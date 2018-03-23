@@ -29,7 +29,7 @@ public class AnimationPanel extends JPanel {
     
     boolean mousePressed = false;
 
-    private Ship robot;
+    private Ship player;
    
     /**
      * Timer-Objekt zum Neuzeichnen des Frames
@@ -57,9 +57,9 @@ public class AnimationPanel extends JPanel {
         nShapes++;
     }
     
-    public void registerPlayer(Ship robot) {
-        this.robot = robot;
-        register(robot);
+    public void registerPlayer(Ship player) {
+        this.player = player;
+        register(player);
     }
 
     /**
@@ -133,22 +133,32 @@ public class AnimationPanel extends JPanel {
     
     
     class MyKeyAdapter extends KeyAdapter {
+                
+        private boolean pressedW;
+        private boolean pressedA;
+        private boolean pressedS;
+        private boolean pressedD;
+        
         @Override
         public void keyPressed(KeyEvent e) {
             System.out.println("MyKeyAdapter::keyPressed: " + e.getKeyCode());
             
             if (e.getKeyCode() == 87) {
                 System.out.println("press: W");
-                robot.moveUp();
+                pressedW = true;
+                player.moveUp();
             } else if (e.getKeyCode() == 65) {
                 System.out.println("press: A");
-                robot.moveLeft();
+                pressedA = true;
+                player.moveLeft();
             } else if (e.getKeyCode() == 83) {
                 System.out.println("press: S");
-                robot.moveDown();
+                pressedS = true;
+                player.moveDown();
             } else if (e.getKeyCode() == 68) {
                 System.out.println("press: D");
-                robot.moveRight();
+                pressedD = true;
+                player.moveRight();
             }
         }
         
@@ -158,17 +168,39 @@ public class AnimationPanel extends JPanel {
             
             if (e.getKeyCode() == 87) {
                 System.out.println("release: W");
-                robot.stopUp();
+                pressedW = false;
+                player.stopUp();
             } else if (e.getKeyCode() == 65) {
                 System.out.println("release: A");
-                robot.stopLeft();
+                pressedA = false;
+                player.stopLeft();
             } else if (e.getKeyCode() == 83) {
                 System.out.println("relesae: S");
-                robot.stopDown();
+                pressedS = false;
+                player.stopDown();
             } else if (e.getKeyCode() == 68) {
                 System.out.println("release: D");
-                robot.stopRight();
+                pressedD = false;
+                player.stopRight();
             }
+            
+            
+        }
+
+        public boolean isPressedW() {
+            return pressedW;
+        }
+
+        public boolean isPressedA() {
+            return pressedA;
+        }
+
+        public boolean isPressedS() {
+            return pressedS;
+        }
+
+        public boolean isPressedD() {
+            return pressedD;
         }
     }
     
@@ -193,4 +225,5 @@ public class AnimationPanel extends JPanel {
             return e.getY();
         }
     }
+    
 }
