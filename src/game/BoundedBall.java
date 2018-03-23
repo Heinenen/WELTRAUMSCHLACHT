@@ -3,12 +3,12 @@ package game;
 /**
  * Diese Klasse ist ein Modell eines 2D-Balls, der auf einer Animationsleinwand
  * bewegt und gezeichnet wird.
- * Objekte der Klasse Ball besitzen die (x/y)-Koordinaten des Mittelpunkts,
- * einen Radius und "Geschwindigkeiten" in x- bzw. y-Richtung.
+ * Objekte der Klasse Shot besitzen die (x/y)-Koordinaten des Mittelpunkts,
+ einen Radius und "Geschwindigkeiten" in x- bzw. y-Richtung.
  * 
  * @author mars
  */
-public class BoundedBall extends Ball {
+public class BoundedBall extends Shot {
     /**
      * BoundingBox
      */
@@ -26,17 +26,17 @@ public class BoundedBall extends Ball {
 
     /**
      * Konstruktor der Klasse BoundedBall.
-     *
-     * @param aX x-Koordinate zu Beginn der Animation
-     * @param aY y-Koordinate zu Beginn der Animation
-     * @param aVx Verschiebung in x-Richtung pro Frame
-     * @param aVy Verschiebung in y-Richtung pro Frame     
-     * @param aRadius Radius des Balles
-     * @param aBox BoundingBox
+     * @param x
+     * @param y
+     * @param vx
+     * @param vy
+     * @param radius
+     * @param fileName
+     * @param box
      */
-    public BoundedBall(int aX, int aY, int aVx, int aVy, int aRadius, BoundingBox aBox) {
-        super(aX, aY, aVx, aVy, aRadius);
-        box = aBox;        
+    public BoundedBall(int x, int y, int vx, int vy, int radius, String fileName, BoundingBox box) {
+        super(x, y, vx, vy, radius, fileName);
+        this.box = box;        
     }   
 
     /**

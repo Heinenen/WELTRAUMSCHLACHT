@@ -16,10 +16,10 @@ public class BoundingBox extends Shape
     private int width;
     private int height;
 
-    public BoundingBox(int aX, int aY, int aVx, int aVy, int aWidth, int aHeight) {
-        super(aX, aY, aVx, aVy);
-        width = aWidth;
-        height = aHeight;
+    public BoundingBox(int x, int y, int vx, int vy, String fileName, int width, int height) {
+        super(x, y, vx, vy, fileName);
+        this.width = width;
+        this.height = height;
     }
 
     @Override

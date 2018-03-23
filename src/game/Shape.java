@@ -1,6 +1,10 @@
 package game;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /**
  * Write a description of class Shape here.
@@ -30,18 +34,23 @@ public abstract class Shape
      */
     protected int vy;
     
+    
+    protected BufferedImage image;
+    protected BufferedImage rotatedImage;
+    
     /**
      * Constructor for objects of class Shape
      * @param x
      * @param y
      * @param vx
      * @param vy
+     * @param fileName
      */
-    public Shape(int x, int y, int vx, int vy) {
+    public Shape(int x, int y, int vx, int vy, String fileName) {
         this.x = x;
         this.y = y;
         this.vx = vx;
-        this.vy = vy; 
+        this.vy = vy;
     }
     
         /**

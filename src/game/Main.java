@@ -9,6 +9,8 @@ package game;
  *
  * @author Thomas
  */
+
+// TODO finish method calcAlpha in Ship
 public class Main {
     
     

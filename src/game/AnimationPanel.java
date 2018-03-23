@@ -181,25 +181,24 @@ public class AnimationPanel extends JPanel {
     }
     
     class MyMouseAdapter extends MouseAdapter {
+        
+        /**
         @Override
         public void mousePressed(MouseEvent e) {
             System.out.println("mousePressed: [x = " + e.getX() + ", y = " + e.getY() + "]");
-            mousePressed = true;
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
             System.out.println("mouseReleased: [x = " + e.getX() + ", y = " + e.getY() + "]");
-            mousePressed = false;
+        }
+        */
+        
+        @Override
+        public void mouseMoved(MouseEvent e){
+            System.out.println("mouseMoved: [x = " + e.getX() + ", y = " + e.getY() + "]");
+            
         }
         
-        public int mouseGetX(MouseEvent e){
-            return e.getX();
-        }
-        
-        public int mouseGetY(MouseEvent e){
-            return e.getY();
-        }
     }
-    
 }
