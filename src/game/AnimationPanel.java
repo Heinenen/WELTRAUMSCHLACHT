@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JPanel;
@@ -51,8 +49,8 @@ public class AnimationPanel extends JPanel {
     }
 
     /**
-     * Anmelden eines Balles zur Animation.
-     * @param ball neuer Ball
+     * Anmelden eines Shapes zur Animation.
+     * @param shape
      */
     public void register(Shape shape) {
         shapes[nShapes] = shape;
@@ -98,6 +96,7 @@ public class AnimationPanel extends JPanel {
 
     /**
      * Zeichnet die Leinwand. 
+     * @param g
      */
     @Override   
     public void paintComponent(Graphics g) {
@@ -132,52 +131,55 @@ public class AnimationPanel extends JPanel {
         }
     }
     
-    //// TODO RICHTIGE TASTEN
     
     class MyKeyAdapter extends KeyAdapter {
+        @Override
         public void keyPressed(KeyEvent e) {
             System.out.println("MyKeyAdapter::keyPressed: " + e.getKeyCode());
             
             if (e.getKeyCode() == 87) {
-                System.out.println("left: " + KeyEvent.VK_LEFT);
+                System.out.println("press: W");
                 robot.moveUp();
-            } else if (e.getKeyCode() == 68) {
-                System.out.println("right: " + KeyEvent.VK_RIGHT);
+            } else if (e.getKeyCode() == 65) {
+                System.out.println("press: A");
                 robot.moveLeft();
             } else if (e.getKeyCode() == 83) {
-                System.out.println("right: " + KeyEvent.VK_RIGHT);
+                System.out.println("press: S");
                 robot.moveDown();
-            } else if (e.getKeyCode() == 63) {
-                System.out.println("right: " + KeyEvent.VK_RIGHT);
+            } else if (e.getKeyCode() == 68) {
+                System.out.println("press: D");
                 robot.moveRight();
             }
         }
         
+        @Override
         public void keyReleased(KeyEvent e) {
-            System.out.println("MyKeyAdapter::keyPressed: " + e.getKeyCode());
+            System.out.println("MyKeyAdapter::keyReleaed: " + e.getKeyCode());
             
             if (e.getKeyCode() == 87) {
-                System.out.println("left: " + KeyEvent.VK_LEFT);
+                System.out.println("release: W");
                 robot.stopUp();
-            } else if (e.getKeyCode() == 68) {
-                System.out.println("right: " + KeyEvent.VK_RIGHT);
+            } else if (e.getKeyCode() == 65) {
+                System.out.println("release: A");
                 robot.stopLeft();
             } else if (e.getKeyCode() == 83) {
-                System.out.println("right: " + KeyEvent.VK_RIGHT);
+                System.out.println("relesae: S");
                 robot.stopDown();
-            } else if (e.getKeyCode() == 63) {
-                System.out.println("right: " + KeyEvent.VK_RIGHT);
+            } else if (e.getKeyCode() == 68) {
+                System.out.println("release: D");
                 robot.stopRight();
             }
         }
     }
     
     class MyMouseAdapter extends MouseAdapter {
+        @Override
         public void mousePressed(MouseEvent e) {
             System.out.println("mousePressed: [x = " + e.getX() + ", y = " + e.getY() + "]");
             mousePressed = true;
         }
 
+        @Override
         public void mouseReleased(MouseEvent e) {
             System.out.println("mouseReleased: [x = " + e.getX() + ", y = " + e.getY() + "]");
             mousePressed = false;
