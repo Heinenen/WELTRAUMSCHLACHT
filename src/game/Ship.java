@@ -45,12 +45,6 @@ public class Ship extends Shape {
     
     AffineTransform at = new AffineTransform();
     
-    public void rotate(double alpha, BufferedImage src){
-        AffineTransform aT = AffineTransform.getRotateInstance(Math.toRadians(alpha), src.getWidth() / 2, src.getHeight() / 2);
-        rotatedImage = new BufferedImage(src.getWidth(), src.getHeight(), src.getType());
-    }
-    
-    
     // TODO finish method
     public void calcAlpha(int objX, int objY, int mouseX, int mouseY){
         
@@ -58,7 +52,6 @@ public class Ship extends Shape {
 
     @Override
     public void paint(Graphics2D g2d) {
-        rotate(alpha, image);
         g2d.drawImage(rotatedImage, x, y, null);
     }
 
