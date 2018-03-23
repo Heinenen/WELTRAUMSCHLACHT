@@ -132,16 +132,42 @@ public class AnimationPanel extends JPanel {
         }
     }
     
+    //// TODO RICHTIGE TASTEN
+    
     class MyKeyAdapter extends KeyAdapter {
         public void keyPressed(KeyEvent e) {
             System.out.println("MyKeyAdapter::keyPressed: " + e.getKeyCode());
             
             if (e.getKeyCode() == 87) {
                 System.out.println("left: " + KeyEvent.VK_LEFT);
-                robot.left();
-            } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                robot.moveUp();
+            } else if (e.getKeyCode() == 68) {
                 System.out.println("right: " + KeyEvent.VK_RIGHT);
-                robot.right();
+                robot.moveLeft();
+            } else if (e.getKeyCode() == 83) {
+                System.out.println("right: " + KeyEvent.VK_RIGHT);
+                robot.moveDown();
+            } else if (e.getKeyCode() == 63) {
+                System.out.println("right: " + KeyEvent.VK_RIGHT);
+                robot.moveRight();
+            }
+        }
+        
+        public void keyReleased(KeyEvent e) {
+            System.out.println("MyKeyAdapter::keyPressed: " + e.getKeyCode());
+            
+            if (e.getKeyCode() == 87) {
+                System.out.println("left: " + KeyEvent.VK_LEFT);
+                robot.stopUp();
+            } else if (e.getKeyCode() == 68) {
+                System.out.println("right: " + KeyEvent.VK_RIGHT);
+                robot.stopLeft();
+            } else if (e.getKeyCode() == 83) {
+                System.out.println("right: " + KeyEvent.VK_RIGHT);
+                robot.stopDown();
+            } else if (e.getKeyCode() == 63) {
+                System.out.println("right: " + KeyEvent.VK_RIGHT);
+                robot.stopRight();
             }
         }
     }

@@ -33,11 +33,43 @@ public class Ship extends Shape
         g2d.drawImage(image, x, y, null);
     }
     
-    public void left() {
-        vx = vx - 1;
+    public void moveUp() {
+        vy = -5;
     }
     
-    public void right() {
-        vx = vx + 1;  
+    public void moveLeft() {
+        vx = -5;  
+    }
+    
+    public void moveDown(){
+        vy = 5;
+    }
+    
+    public void moveRight(){
+        vx = 5;
+    }
+    
+    public void stopUp(){
+        if(vy != 5){
+            vy = 0;
+        }
+    }
+    
+    public void stopLeft(){
+        if(vx != 5){
+            vx = 0;
+        }
+    }
+    
+    public void stopDown(){
+        if(vy != -5){
+            vy = 0;
+        }
+    }
+    
+    public void stopRight(){
+        if(vx != -5){
+            vx = 0;
+        }
     }
 }
