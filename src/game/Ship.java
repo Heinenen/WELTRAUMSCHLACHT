@@ -14,6 +14,10 @@ import javax.imageio.ImageIO;
 public class Ship extends Shape
 {
     private BufferedImage image;
+    private boolean pressedW;
+    private boolean pressedA;
+    private boolean pressedS;
+    private boolean pressedD;
 
     /**
      * Constructor for objects of class Graphic
@@ -38,47 +42,58 @@ public class Ship extends Shape
     public void paint(Graphics2D g2d) {
         g2d.drawImage(image, x, y, null);
     }
+
+    public void setPressedW(boolean pressedW) {
+        this.pressedW = pressedW;
+    }
+
+    public void setPressedA(boolean pressedA) {
+        this.pressedA = pressedA;
+    }
+
+    public void setPressedS(boolean pressedS) {
+        this.pressedS = pressedS;
+    }
+
+    public void setPressedD(boolean pressedD) {
+        this.pressedD = pressedD;
+    }
     
     // Fuer korrekte Diagonal-Bewegung mit Vorraussetzung vx = vy
     // vx_neu = sqr[(vx_alt^2) / 2] 
     
-    public void moveUp() {
-        vy = -5;
-    }
-    
-    public void moveLeft() {
-        vx = -5;  
-    }
-    
-    public void moveDown(){
-        vy = 5;
-    }
-    
-    public void moveRight(){
-        vx = 5;
-    }
-    
-    public void stopUp(){
-        if(vy != 5){
+    public void moveShip(){
+        if(pressedW){
+            if(pressedA){
+                vx = -4;
+                vy = -4;
+            } else if(pressedD){
+                vx = 4;
+                vy = -4;
+            } else {
+                vx = 0;
+                vy = -6;
+            }
+        } else if(pressedS){
+            if(pressedA){
+                vx = -4;
+                vy = 4;
+            } else if(pressedD){
+                vx = 4;
+                vy = 4;
+            } else {
+                vx = 0;
+                vy = 6;
+            } 
+        } else if(pressedA){
+            vx = -6;
             vy = 0;
-        }
-    }
-    
-    public void stopLeft(){
-        if(vx != 5){
-            vx = 0;
-        }
-    }
-    
-    public void stopDown(){
-        if(vy != -5){
+        } else if(pressedD){
+            vx = 6;
             vy = 0;
-        }
-    }
-    
-    public void stopRight(){
-        if(vx != -5){
+        } else {
             vx = 0;
+            vy = 0;
         }
     }
 }
