@@ -1,8 +1,5 @@
 package game;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-
 /**
  * Diese Klasse ist ein Modell eines 2D-Balls, der auf einer Animationsleinwand
  * bewegt und gezeichnet wird.
@@ -46,6 +43,7 @@ public class BoundedBall extends Ball {
      * Diese Methode bewirkt das Verschieben des Balles in x- und y-Richtung.
      *
      */
+    @Override
     public void move() {
         super.move();
 

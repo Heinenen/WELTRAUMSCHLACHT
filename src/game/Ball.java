@@ -1,6 +1,5 @@
 package game;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 
 /**
@@ -42,6 +41,7 @@ public class Ball extends Shape {
      *
      * @param g2d aktueller Grafikkontext
      */
+    @Override
     public void paint(Graphics2D g2d) {
         int diameter = 2 * radius;
         g2d.fillOval(x - radius, y - radius, diameter, diameter);

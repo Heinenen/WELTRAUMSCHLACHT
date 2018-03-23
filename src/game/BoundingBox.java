@@ -22,6 +22,7 @@ public class BoundingBox extends Shape
         height = aHeight;
     }
 
+    @Override
     public void paint(Graphics2D g2d) {
         Color c = g2d.getColor();
         g2d.setColor(Color.RED);

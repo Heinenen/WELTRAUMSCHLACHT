@@ -7,12 +7,13 @@ package game;
 
 /**
  *
- * @author schueler
+ * @author Thomas
  */
 public class Main {
     
+    
     public static void main(String[] args) {
         
+        Simulation.startAnimation();
     }
-    
 }

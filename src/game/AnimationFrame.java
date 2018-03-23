@@ -3,8 +3,6 @@ package game;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * Fenster zur Darstellung der Animation.

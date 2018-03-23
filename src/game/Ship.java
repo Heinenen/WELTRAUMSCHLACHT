@@ -17,9 +17,14 @@ public class Ship extends Shape
 
     /**
      * Constructor for objects of class Graphic
+     * @param x
+     * @param y
+     * @param vx
+     * @param vy
+     * @param fileName
      */
-    public Ship(int aX, int aY, int aVx, int aVy, String fileName) {
-        super(aX, aY, aVx, aVy);
+    public Ship(int x, int y, int vx, int vy, String fileName) {
+        super(x, y, vx, vy);
 
         try {
             image = (BufferedImage) ImageIO.read(new File(fileName));
@@ -29,9 +34,13 @@ public class Ship extends Shape
 
     }
 
+    @Override
     public void paint(Graphics2D g2d) {
         g2d.drawImage(image, x, y, null);
     }
+    
+    // Fuer korrekte Diagonal-Bewegung mit Vorraussetzung vx = vy
+    // vx_neu = sqr[(vx_alt^2) / 2] 
     
     public void moveUp() {
         vy = -5;

@@ -45,9 +45,5 @@ public class Simulation {
         // Animation starten
         frame.startAnimation();
     }
-
-    public static void main(String[] args) {
-        startAnimation();
-    }
 }
 
