@@ -1,8 +1,6 @@
 package game;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -41,19 +39,6 @@ public class Ship extends Shape {
             System.out.println(ex);
         }
     }
-    
-    public static Image rotateImage(Image src, double degs){
-        int width = src.getWidth(null);
-        int height = src.getHeight(null);
-        BufferedImage temp = new BufferedImage(height, width, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g2 = temp.createGraphics();
-        g2.rotate(Math.toRadians(degs), height / 2, height / 2);
-        g2.drawImage(src, 0, 0, Color.WHITE, null);
-        g2.dispose();
-        return temp;
-    }
-    
-    
     
     // TODO finish method
     public void calcAlpha(int objX, int objY, int mouseX, int mouseY){

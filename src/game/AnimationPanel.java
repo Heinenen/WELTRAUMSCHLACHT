@@ -4,13 +4,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.MouseInfo;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JPanel;
 import java.awt.event.KeyAdapter;
-import java.awt.event.MouseAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 /**
  * Leinwand zur Darstellung der Animationsobjekte und zur Steuerung der
@@ -23,13 +24,15 @@ public class AnimationPanel extends JPanel {
     /**
      * Bälle, die animiert werden
      */
-    private Shape[] shapes;
+    private final Shape[] shapes;
     private int nShapes;
-    private int MAX_N_SHAPES = 100;   
+    private final int MAX_N_SHAPES = 100;   
     
     boolean mousePressed = false;
 
     private Ship player;
+    
+    private int mx, my;
    
     /**
      * Timer-Objekt zum Neuzeichnen des Frames
@@ -45,7 +48,18 @@ public class AnimationPanel extends JPanel {
         nShapes = 0;
         this.setFocusable(true);
         this.addKeyListener(new MyKeyAdapter());                          
-        this.addMouseListener(new MyMouseAdapter());
+        //this.addMouseListener(new MyMouseAdapter());
+        this.addMouseMotionListener(new MyMouseMotionListener());
+        /*
+        this.addMouseMotionListener(new MouseAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e){
+                mx = e.getX();
+                my = e.getY();
+                me.consume();
+            }
+        });
+        */
     }
 
     /**
@@ -117,6 +131,13 @@ public class AnimationPanel extends JPanel {
         animationTimer = new Timer();
         animationTimer.scheduleAtFixedRate(new AnimationTask(), 0, 25);
     }
+    
+    public void mouseLocation(){
+        int mouseX = MouseInfo.getPointerInfo().getLocation().x;
+        int mouseY = MouseInfo.getPointerInfo().getLocation().y;
+        player.setMouseX(mouseX);
+        player.setMouseY(mouseY);
+    }
 
     /**
      * Task zur Steuerung der Animation.
@@ -124,6 +145,8 @@ public class AnimationPanel extends JPanel {
     private class AnimationTask extends TimerTask {
         @Override
         public void run() {
+            // mouse location
+            mouseLocation();
             // bewege die Bälle
             moveAll();
             // aktualisiere die Leinwand
@@ -157,6 +180,7 @@ public class AnimationPanel extends JPanel {
             }
             
             player.moveShip();
+            e.consume();
         }
         
         @Override
@@ -177,27 +201,30 @@ public class AnimationPanel extends JPanel {
             }
             
             player.moveShip();
+            e.consume();
         }
     }
     
-    class MyMouseAdapter extends MouseAdapter {
-        
-        /**
+    class MyMouseMotionListener implements MouseMotionListener{
+
         @Override
-        public void mousePressed(MouseEvent e) {
-            System.out.println("mousePressed: [x = " + e.getX() + ", y = " + e.getY() + "]");
+        public void mouseDragged(MouseEvent me) {
+            mx = me.getX();
+            my = me.getY();
+            
+            System.out.println("MouseLocation (dragged): " + mx + ", " + my);
+            
+            me.consume();
         }
 
         @Override
-        public void mouseReleased(MouseEvent e) {
-            System.out.println("mouseReleased: [x = " + e.getX() + ", y = " + e.getY() + "]");
-        }
-        */
-        
-        @Override
-        public void mouseMoved(MouseEvent e){
-            System.out.println("mouseMoved: [x = " + e.getX() + ", y = " + e.getY() + "]");
+        public void mouseMoved(MouseEvent me) {
+            mx = me.getX();
+            my = me.getY();
             
+            System.out.println("MouseLocation: " + mx + ", " + my);
+            
+            me.consume();
         }
         
     }

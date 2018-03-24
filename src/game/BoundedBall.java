@@ -31,7 +31,6 @@ public class BoundedBall extends Shot {
      * @param vx
      * @param vy
      * @param radius
-     * @param fileName
      * @param box
      */
     public BoundedBall(int x, int y, int vx, int vy, int radius, BoundingBox box) {

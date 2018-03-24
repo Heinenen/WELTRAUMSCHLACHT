@@ -1,10 +1,9 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
 /**
  * Write a description of class Shape here.
@@ -39,12 +38,21 @@ public abstract class Shape
     protected BufferedImage rotatedImage;
     
     /**
+     * x-Koordinate der Maus
+     */
+    protected int mouseX;
+    
+    /**
+     * y-Koordinate der Maus
+     */
+    protected int mouseY;
+    
+    /**
      * Constructor for objects of class Shape
      * @param x
      * @param y
      * @param vx
      * @param vy
-     * @param fileName
      */
     public Shape(int x, int y, int vx, int vy) {
         this.x = x;
@@ -63,4 +71,23 @@ public abstract class Shape
     }
 
     public abstract void paint(Graphics2D g2d);
+
+    public void setMouseX(int mouseX) {
+        this.mouseX = mouseX;
+    }
+
+    public void setMouseY(int mouseY) {
+        this.mouseY = mouseY;
+    }
+    
+    public Image rotateImage(Image src, double degs){
+        int width = src.getWidth(null);
+        int height = src.getHeight(null);
+        BufferedImage temp = new BufferedImage(height, width, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2 = temp.createGraphics();
+        g2.rotate(Math.toRadians(degs), height / 2, height / 2);
+        g2.drawImage(src, 0, 0, Color.WHITE, null);
+        g2.dispose();
+        return temp;
+    }
 }
