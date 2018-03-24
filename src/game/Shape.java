@@ -46,7 +46,7 @@ public abstract class Shape
      * @param vy
      * @param fileName
      */
-    public Shape(int x, int y, int vx, int vy, String fileName) {
+    public Shape(int x, int y, int vx, int vy) {
         this.x = x;
         this.y = y;
         this.vx = vx;

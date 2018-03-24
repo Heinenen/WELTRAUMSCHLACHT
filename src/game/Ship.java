@@ -1,7 +1,8 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -32,18 +33,27 @@ public class Ship extends Shape {
      * @param fileName
      */
     public Ship(int x, int y, int vx, int vy, String fileName) {
-        super(x, y, vx, vy, fileName);
+        super(x, y, vx, vy);
         
         try {
             image = (BufferedImage) ImageIO.read(new File(fileName));
         } catch (IOException ex) {
             System.out.println(ex);
         }
-        
-        rotatedImage = image;
     }
     
-    AffineTransform at = new AffineTransform();
+    public static Image rotateImage(Image src, double degs){
+        int width = src.getWidth(null);
+        int height = src.getHeight(null);
+        BufferedImage temp = new BufferedImage(height, width, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2 = temp.createGraphics();
+        g2.rotate(Math.toRadians(degs), height / 2, height / 2);
+        g2.drawImage(src, 0, 0, Color.WHITE, null);
+        g2.dispose();
+        return temp;
+    }
+    
+    
     
     // TODO finish method
     public void calcAlpha(int objX, int objY, int mouseX, int mouseY){
@@ -52,7 +62,8 @@ public class Ship extends Shape {
 
     @Override
     public void paint(Graphics2D g2d) {
-        g2d.drawImage(rotatedImage, x, y, null);
+        // calcAlpha
+        g2d.drawImage(rotateImage(image, 0), x, y, null);
     }
 
     public void setPressedW(boolean pressedW) {

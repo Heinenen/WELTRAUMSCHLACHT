@@ -16,8 +16,8 @@ public class BoundingBox extends Shape
     private int width;
     private int height;
 
-    public BoundingBox(int x, int y, int vx, int vy, String fileName, int width, int height) {
-        super(x, y, vx, vy, fileName);
+    public BoundingBox(int x, int y, int vx, int vy, int width, int height) {
+        super(x, y, vx, vy);
         this.width = width;
         this.height = height;
     }

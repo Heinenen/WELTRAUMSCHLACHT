@@ -21,7 +21,7 @@ public class AnimationFrame extends JFrame {
     public AnimationFrame() {
         super("AnimationDemo");
 
-        setPreferredSize(new Dimension(600, 400));
+        setPreferredSize(new Dimension(1280, 720));
         initComponents();
     }
 

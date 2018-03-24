@@ -31,8 +31,8 @@ public class Shot extends Shape {
      * @param vy
      * @param radius
      */
-    public Shot(int x, int y, int vx, int vy, int radius, String fileName) {
-        super(x, y, vx, vy, fileName);
+    public Shot(int x, int y, int vx, int vy, int radius) {
+        super(x, y, vx, vy);
         this.radius = radius;        
     }
     
