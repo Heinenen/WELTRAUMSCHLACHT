@@ -20,6 +20,11 @@ public class Ship extends Shape {
     private boolean pressedA;
     private boolean pressedS;
     private boolean pressedD;
+    
+    
+    /**
+     * Winkel Ship zu Maus in Rad
+     */
     private double alpha;
 
     /**
@@ -41,14 +46,14 @@ public class Ship extends Shape {
     }
     
     // TODO finish method
-    public void calcAlpha(int objX, int objY, int mouseX, int mouseY){
-        
+    public void calcAlpha(){
+        alpha = Math.atan2(-(mouseX - x), mouseY - y);
     }
 
     @Override
     public void paint(Graphics2D g2d) {
-        // calcAlpha
-        g2d.drawImage(rotateImage(image, 0), x, y, null);
+        calcAlpha();
+        g2d.drawImage(rotateImage(image, alpha), x - image.getWidth() / 2, y - image.getHeight() / 2, null);
     }
 
     public void setPressedW(boolean pressedW) {

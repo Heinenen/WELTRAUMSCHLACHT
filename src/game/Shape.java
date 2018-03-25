@@ -80,12 +80,12 @@ public abstract class Shape
         this.mouseY = mouseY;
     }
     
-    public Image rotateImage(Image src, double degs){
+    public Image rotateImage(Image src, double rad){
         int width = src.getWidth(null);
         int height = src.getHeight(null);
         BufferedImage temp = new BufferedImage(height, width, BufferedImage.TYPE_INT_RGB);
         Graphics2D g2 = temp.createGraphics();
-        g2.rotate(Math.toRadians(degs), height / 2, height / 2);
+        g2.rotate(rad, height / 2, height / 2);
         g2.drawImage(src, 0, 0, Color.WHITE, null);
         g2.dispose();
         return temp;

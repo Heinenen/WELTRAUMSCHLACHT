@@ -131,13 +131,6 @@ public class AnimationPanel extends JPanel {
         animationTimer = new Timer();
         animationTimer.scheduleAtFixedRate(new AnimationTask(), 0, 25);
     }
-    
-    public void mouseLocation(){
-        int mouseX = MouseInfo.getPointerInfo().getLocation().x;
-        int mouseY = MouseInfo.getPointerInfo().getLocation().y;
-        player.setMouseX(mouseX);
-        player.setMouseY(mouseY);
-    }
 
     /**
      * Task zur Steuerung der Animation.
@@ -145,8 +138,6 @@ public class AnimationPanel extends JPanel {
     private class AnimationTask extends TimerTask {
         @Override
         public void run() {
-            // mouse location
-            mouseLocation();
             // bewege die Bälle
             moveAll();
             // aktualisiere die Leinwand
@@ -212,7 +203,10 @@ public class AnimationPanel extends JPanel {
             mx = me.getX();
             my = me.getY();
             
-            System.out.println("MouseLocation (dragged): " + mx + ", " + my);
+            player.setMouseX(mx);
+            player.setMouseY(my);
+            
+            //System.out.println("MouseLocation (dragged): " + mx + ", " + my);
             
             me.consume();
         }
@@ -222,7 +216,10 @@ public class AnimationPanel extends JPanel {
             mx = me.getX();
             my = me.getY();
             
-            System.out.println("MouseLocation: " + mx + ", " + my);
+            player.setMouseX(mx);
+            player.setMouseY(my);
+            
+            //System.out.println("MouseLocation: " + mx + ", " + my);
             
             me.consume();
         }
