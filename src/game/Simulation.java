@@ -20,7 +20,7 @@ public class Simulation {
         // Shot bb = new Shot(500,500,0,0,550,"img/magician1.png");
         // panel.register(bb);
         
-        Ship g = new Ship(100, 30, 0, 0, "img/magician1.png");
+        Ship g = new Ship(100, 30, 0, 0, "img/magician2.png");
         panel.registerPlayer(g);    
         
         // Fenster berechnen und sichtbar setzen

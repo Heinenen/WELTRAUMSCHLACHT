@@ -102,7 +102,7 @@ public class AnimationPanel extends JPanel {
      */
     private void fillPanelBackground(Graphics2D g2d) {
         Color c = g2d.getColor();
-        g2d.setColor(Color.BLACK);
+        g2d.setColor(Color.gray);
         Dimension d = getSize();
         g2d.fillRect(0, 0, (int) d.getWidth(), (int) d.getHeight());
         g2d.setColor(c);
