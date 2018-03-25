@@ -13,8 +13,8 @@ public class BoundingBox extends Shape
 {
 
 
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
 
     public BoundingBox(int x, int y, int vx, int vy, int width, int height) {
         super(x, y, vx, vy);
