@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 /**
@@ -47,19 +48,9 @@ public class AnimationPanel extends JPanel {
         shapes = new Shape[MAX_N_SHAPES];        
         nShapes = 0;
         this.setFocusable(true);
-        this.addKeyListener(new MyKeyAdapter());                          
-        //this.addMouseListener(new MyMouseAdapter());
+        this.addKeyListener(new MyKeyAdapter());
         this.addMouseMotionListener(new MyMouseMotionListener());
-        /*
-        this.addMouseMotionListener(new MouseAdapter() {
-            @Override
-            public void mouseMoved(MouseEvent e){
-                mx = e.getX();
-                my = e.getY();
-                me.consume();
-            }
-        });
-        */
+        this.addMouseListener(new MyMouseListener());
     }
 
     /**
@@ -222,6 +213,34 @@ public class AnimationPanel extends JPanel {
             //System.out.println("MouseLocation: " + mx + ", " + my);
             
             me.consume();
+        }
+    }
+    
+    class MyMouseListener implements MouseListener{
+
+        @Override
+        public void mousePressed(MouseEvent me) {
+            player.setMousePressed(true);
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent me) {
+            player.setMousePressed(false);
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent me) {
+            // do nothing
+        }
+
+        @Override
+        public void mouseExited(MouseEvent me) {
+            // do nothing
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent me) {
+            // do nothing
         }
         
     }

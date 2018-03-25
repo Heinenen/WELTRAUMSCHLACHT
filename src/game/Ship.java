@@ -21,11 +21,7 @@ public class Ship extends Shape {
     private boolean pressedS;
     private boolean pressedD;
     
-    
-    /**
-     * Winkel Ship zu Maus in Rad
-     */
-    private double alpha;
+    private boolean mousePressed;
 
     /**
      * Constructor for objects of class Graphic
@@ -70,6 +66,10 @@ public class Ship extends Shape {
 
     public void setPressedD(boolean pressedD) {
         this.pressedD = pressedD;
+    }
+
+    public void setMousePressed(boolean mousePressed) {
+        this.mousePressed = mousePressed;
     }
     
     

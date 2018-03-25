@@ -34,7 +34,6 @@ public abstract class Shape
     
     
     protected BufferedImage image;
-    protected BufferedImage rotatedImage;
     
     /**
      * x-Koordinate der Maus
@@ -45,6 +44,11 @@ public abstract class Shape
      * y-Koordinate der Maus
      */
     protected int mouseY;
+    
+    /**
+     * Winkel vom Schiff zur Maus
+     */
+    protected double alpha;
     
     /**
      * Constructor for objects of class Shape
@@ -90,4 +94,5 @@ public abstract class Shape
         g2d.dispose();
         return temp;
     }
+    
 }

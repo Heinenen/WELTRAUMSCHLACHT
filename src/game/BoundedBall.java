@@ -12,7 +12,7 @@ public class BoundedBall extends Shot {
     /**
      * BoundingBox
      */
-    private BoundingBox box;
+    private final BoundingBox box;
     
     /**
      * Konstruktor der Klasse BoundedBall.
@@ -34,8 +34,8 @@ public class BoundedBall extends Shot {
      * @param box
      */
     public BoundedBall(int x, int y, int vx, int vy, int radius, BoundingBox box) {
-        super(x, y, vx, vy, radius);
-        this.box = box;        
+        super(x, y, vx, vy, radius );
+        this.box = box;       
     }   
 
     /**
@@ -46,25 +46,25 @@ public class BoundedBall extends Shot {
     public void move() {
         super.move();
 
-        // Prüfen, ob der untere Rand erreicht ist.
+        // Pruefen, ob der untere Rand erreicht ist.
         if (y + radius >= box.getBottomY()) {
             y = box.getBottomY() - radius;
             vy = -vy;
         }
 
-        // Pr�fen, ob der rechte Rand erreicht ist.
+        // Pruefen, ob der rechte Rand erreicht ist.
         if (x + radius >= box.getRightX()) {
             x = box.getRightX() - radius;
             vx = -vx;
         }
 
-        // Pr�fen, ob der linke Rand erreicht ist.
+        // Pruefen, ob der linke Rand erreicht ist.
         if (x - radius <= box.getLeftX()) {
             x = box.getLeftX() + radius;
             vx = -vx;
         }
 
-        // Pr�fen, ob der obere Rand erreicht ist.
+        // Pruefen, ob der obere Rand erreicht ist.
         if (y - radius <= box.getTopY()) {
             y = box.getTopY() + radius;
             vy = -vy;
