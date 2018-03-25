@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.MouseInfo;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JPanel;
@@ -196,6 +195,8 @@ public class AnimationPanel extends JPanel {
             
             player.setMouseX(mx);
             player.setMouseY(my);
+            
+            player.shoot();
             
             //System.out.println("MouseLocation (dragged): " + mx + ", " + my);
             

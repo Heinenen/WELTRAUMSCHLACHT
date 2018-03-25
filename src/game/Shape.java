@@ -94,5 +94,13 @@ public abstract class Shape
         g2d.dispose();
         return temp;
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
     
 }

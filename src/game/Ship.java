@@ -22,7 +22,7 @@ public class Ship extends Shape {
     private boolean pressedD;
     
     private boolean mousePressed;
-
+    
     /**
      * Constructor for objects of class Graphic
      * @param x
@@ -114,5 +114,9 @@ public class Ship extends Shape {
             vx = 0;
             vy = 0;
         }
+    }
+    
+    public void shoot(){
+        
     }
 }
