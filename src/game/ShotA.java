@@ -6,9 +6,9 @@ import java.awt.Graphics2D;
  *
  * @author Thomas
  */
-public class ShotA_mg extends Shot {
+public class ShotA extends Shot {
     
-    public ShotA_mg(int x, int y, int vx, int vy, int radius) {
+    public ShotA(int x, int y, int vx, int vy, int radius) {
         super(x, y, vx, vy, radius);
     }
     

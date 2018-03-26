@@ -1,5 +1,6 @@
 package game;
 
+import java.util.ArrayList;
 /**
  * Klasse zur Initialisierung und Steuerung der Simulation.
  *
@@ -17,14 +18,9 @@ public class Simulation {
         // Animations-Leinwand
         AnimationPanel panel = frame.getAnimationPanel();
         
-        // Shot bb = new Shot(500,500,0,0,550,"img/magician1.png");
-        // panel.register(bb);
-        
         // Schiff erzeugen und anmelden
         Ship g = new Ship(100, 30, 0, 0, "img/magician2.png");
-        panel.registerPlayer(g);    
-        
-        // Schuesse anmelden
+        panel.registerPlayer(g);
         
         // Fenster berechnen und sichtbar setzen
         frame.pack();
@@ -32,6 +28,17 @@ public class Simulation {
 
         // Animation starten
         frame.startAnimation();
+        
+        g.shoot();
+        registerShots(panel, g);
+    }
+    
+    public static void registerShots(AnimationPanel p, Ship g){
+        ArrayList<ShotA> al = new ArrayList<>();
+        al = g.getArrayList();
+        for(int i = 0; i < al.size(); i++){
+            p.register(al.get(i));
+        }
     }
 }
 

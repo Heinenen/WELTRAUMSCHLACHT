@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 /**
@@ -23,6 +24,10 @@ public class Ship extends Shape {
     
     private boolean mousePressed;
     
+    private int projectileCount;
+    
+    ArrayList<ShotA> al;
+    
     /**
      * Constructor for objects of class Graphic
      * @param x
@@ -33,6 +38,7 @@ public class Ship extends Shape {
      */
     public Ship(int x, int y, int vx, int vy, String fileName) {
         super(x, y, vx, vy);
+        this.al = new ArrayList<>(0);
         
         try {
             image = (BufferedImage) ImageIO.read(new File(fileName));
@@ -70,6 +76,10 @@ public class Ship extends Shape {
 
     public void setMousePressed(boolean mousePressed) {
         this.mousePressed = mousePressed;
+    }
+    
+    public ArrayList getArrayList(){
+        return al;
     }
     
     
@@ -116,7 +126,15 @@ public class Ship extends Shape {
         }
     }
     
+    
     public void shoot(){
-        
+        ShotA a = new ShotA(x, y, 5, 5, 50);
+        addShot(a);
+        ShotA b = new ShotA(x, y, 7, 10, 20);
+        addShot(b);
+    }
+    
+    public void addShot(ShotA shot){
+        al.add(shot);
     }
 }
