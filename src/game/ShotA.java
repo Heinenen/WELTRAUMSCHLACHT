@@ -27,13 +27,16 @@ public class ShotA extends Shape {
      * Konstruktor der Klasse Ball.
      * @param x
      * @param y
-     * @param radius
      */
     public ShotA(int x, int y) {
         super(x, y);
-        this.radius = 10;
-        this.vx = 10;
-        this.vy = 0;
+        this.radius = 20;
+        
+        double v = 20;
+        double[] vec = new double[2];
+        vec = calcShotV(v);
+        this.vx = (int) vec[0];
+        this.vy = (int) vec[1];
     }
     
 

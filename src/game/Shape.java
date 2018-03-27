@@ -49,7 +49,6 @@ public abstract class Shape
      * Winkel vom Schiff zur Maus
      */
     protected double alpha;
-    
     /**
      * Constructor for objects of class Shape
      * @param x
@@ -62,9 +61,8 @@ public abstract class Shape
         vy = 0;
     }
     
-        /**
+    /**
      * Diese Methode bewirkt das Verschieben des Balles in x- und y-Richtung.
-     *
      */
     public void move() {
         x = x + vx;
@@ -92,6 +90,37 @@ public abstract class Shape
         g2d.dispose();
         return temp;
     }
+    
+    public double[] calcShotV(double v){
+        double disSM;
+        double[] vec = new double[2];
+        
+        // Vektor SM
+        vec[0] = mouseX - x;
+        vec[1] = mouseY - y;
+        // Entfernung Schiff-Maus (Betrag Vektor)
+        disSM = Math.sqrt(Math.pow(vec[0], 2) + Math.pow(vec[1], 2));
+        vec[0] = (vec[0] / disSM) * v;
+        vec[1] = (vec[1] / disSM) * v;
+        
+        return vec;
+    }
+    
+    /*
+    public double calcShotVY(double v){
+        double disSM, vecxSM, vecySM;
+        
+        // Vektor SM
+        vecxSM = mouseX - x;
+        vecySM = mouseY - y;
+        // Entfernung Schiff-Maus (Betrag Vektor)
+        disSM = Math.sqrt(Math.pow(vecxSM, 2) + Math.pow(vecySM, 2));
+        vecxSM = (vecxSM / disSM) * v;
+        vecySM = (vecySM / disSM) * v;
+        
+        return vecySM;
+    }
+    */
 
     public int getX() {
         return x;

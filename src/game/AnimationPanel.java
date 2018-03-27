@@ -147,16 +147,16 @@ public class AnimationPanel extends JPanel {
         public void keyPressed(KeyEvent e) {
             
             if (e.getKeyCode() == 87) {
-                System.out.println("Key pressed: " + e.getKeyCode() + "(W)");
+//                System.out.println("Key pressed: " + e.getKeyCode() + "(W)");
                 player.setPressedW(true);
             } else if (e.getKeyCode() == 65) {
-                System.out.println("Key pressed: " + e.getKeyCode() + "(A)");
+//                System.out.println("Key pressed: " + e.getKeyCode() + "(A)");
                 player.setPressedA(true);
             } else if (e.getKeyCode() == 83) {
-                System.out.println("Key pressed: " + e.getKeyCode() + "(S)");
+//                System.out.println("Key pressed: " + e.getKeyCode() + "(S)");
                 player.setPressedS(true);
             } else if (e.getKeyCode() == 68) {
-                System.out.println("Key pressed: " + e.getKeyCode() + "(D)");
+//                System.out.println("Key pressed: " + e.getKeyCode() + "(D)");
                 player.setPressedD(true);
             }
             
@@ -168,16 +168,16 @@ public class AnimationPanel extends JPanel {
         public void keyReleased(KeyEvent e) {
             
             if (e.getKeyCode() == 87) {
-                System.out.println("Key released: " + e.getKeyCode() + "(W)");
+//                System.out.println("Key released: " + e.getKeyCode() + "(W)");
                 player.setPressedW(false);
             } else if (e.getKeyCode() == 65) {
-                System.out.println("Key released: " + e.getKeyCode() + "(A)");
+//                System.out.println("Key released: " + e.getKeyCode() + "(A)");
                 player.setPressedA(false);
             } else if (e.getKeyCode() == 83) {
-                System.out.println("Key relesaed: " + e.getKeyCode() + "(S)");
+//                System.out.println("Key relesaed: " + e.getKeyCode() + "(S)");
                 player.setPressedS(false);
             } else if (e.getKeyCode() == 68) {
-                System.out.println("Key released: " + e.getKeyCode() + "(S)");
+//                System.out.println("Key released: " + e.getKeyCode() + "(S)");
                 player.setPressedD(false);
             }
             
