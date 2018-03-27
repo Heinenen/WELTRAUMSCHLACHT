@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
  */
 public class ShotA extends Shot {
     
-    public ShotA(int x, int y, int vx, int vy, int radius) {
+    public ShotA(double x, double y, double vx, double vy, int radius) {
         super(x, y, vx, vy, radius);
     }
     
@@ -18,7 +18,7 @@ public class ShotA extends Shot {
     @Override
     public void paint(Graphics2D g2d) {
         int diameter = 2 * radius;
-        g2d.fillOval(x - radius, y - radius, diameter, diameter);
+        g2d.fillOval((int)x - radius, (int)y - radius, diameter, diameter);
     }
     
 }

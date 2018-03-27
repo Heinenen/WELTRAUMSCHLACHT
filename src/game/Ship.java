@@ -36,7 +36,7 @@ public class Ship extends Shape {
      * @param vy
      * @param fileName
      */
-    public Ship(int x, int y, int vx, int vy, String fileName) {
+    public Ship(int x, int y, double vx, double vy, String fileName) {
         super(x, y, vx, vy);
         this.al = new ArrayList<>(0);
         
@@ -55,7 +55,7 @@ public class Ship extends Shape {
     @Override
     public void paint(Graphics2D g2d) {
         calcAlpha();
-        g2d.drawImage(rotateImage(image, alpha), x - image.getWidth() / 2, y - image.getHeight() / 2, null);
+        g2d.drawImage(rotateImage(image, alpha), (int)x - image.getWidth() / 2, (int)y - image.getHeight() / 2, null);
     }
 
     public void setPressedW(boolean pressedW) {
