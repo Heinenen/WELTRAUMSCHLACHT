@@ -49,6 +49,7 @@ public class ShotA extends Shape {
     @Override
     public void paint(Graphics2D g2d) {
         int diameter = 2 * radius;
-        g2d.fillOval(x - radius, y - radius, diameter, diameter);
+        g2d.rotate(alpha , x, y);
+        g2d.fillOval(x - radius, y - radius, radius, diameter);
     }
 }

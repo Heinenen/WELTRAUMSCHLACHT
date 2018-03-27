@@ -60,10 +60,6 @@ public class Ship extends Shape {
         System.out.println(temp);
         System.out.println("rounded for game: " + vDiag);
     }
-    
-    public void calcAlpha(){
-        alpha = Math.atan2(-(mouseX - x), mouseY - y);
-    }
 
     @Override
     public void paint(Graphics2D g2d) {

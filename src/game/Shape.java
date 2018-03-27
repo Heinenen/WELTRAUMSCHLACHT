@@ -49,6 +49,10 @@ public abstract class Shape
      * Winkel vom Schiff zur Maus
      */
     protected double alpha;
+    
+    private double tempX = 1000;
+    private double tempY = 500;
+    
     /**
      * Constructor for objects of class Shape
      * @param x
@@ -71,12 +75,9 @@ public abstract class Shape
 
     public abstract void paint(Graphics2D g2d);
 
-    public void setMouseX(int mouseX) {
-        this.mouseX = mouseX;
-    }
-
-    public void setMouseY(int mouseY) {
-        this.mouseY = mouseY;
+    
+    public void calcAlpha(){
+        alpha = Math.atan2(-(mouseX - x), mouseY - y);
     }
     
     public Image rotateImage(Image src, double rad){
@@ -96,8 +97,8 @@ public abstract class Shape
         double[] vec = new double[2];
         
         // Vektor SM
-        vec[0] = mouseX - x;
-        vec[1] = mouseY - y;
+        vec[0] = tempX - x;
+        vec[1] = tempY - y;
         // Entfernung Schiff-Maus (Betrag Vektor)
         disSM = Math.sqrt(Math.pow(vec[0], 2) + Math.pow(vec[1], 2));
         vec[0] = (vec[0] / disSM) * v;
@@ -105,22 +106,6 @@ public abstract class Shape
         
         return vec;
     }
-    
-    /*
-    public double calcShotVY(double v){
-        double disSM, vecxSM, vecySM;
-        
-        // Vektor SM
-        vecxSM = mouseX - x;
-        vecySM = mouseY - y;
-        // Entfernung Schiff-Maus (Betrag Vektor)
-        disSM = Math.sqrt(Math.pow(vecxSM, 2) + Math.pow(vecySM, 2));
-        vecxSM = (vecxSM / disSM) * v;
-        vecySM = (vecySM / disSM) * v;
-        
-        return vecySM;
-    }
-    */
 
     public int getX() {
         return x;
@@ -130,4 +115,11 @@ public abstract class Shape
         return y;
     }
     
+    public void setMouseX(int mouseX) {
+        this.mouseX = mouseX;
+    }
+
+    public void setMouseY(int mouseY) {
+        this.mouseY = mouseY;
+    }
 }
