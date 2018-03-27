@@ -26,6 +26,10 @@ public class Ship extends Shape {
     
     private int projectileCount;
     
+    private int vDiag;
+    
+    private int vmax;
+    
     ArrayList<ShotA> al;
     
     /**
@@ -34,10 +38,12 @@ public class Ship extends Shape {
      * @param y
      * @param vx
      * @param vy
+     * @param vmax
      * @param fileName
      */
-    public Ship(int x, int y, int vx, int vy, String fileName) {
+    public Ship(int x, int y, int vx, int vy, int vmax, String fileName) {
         super(x, y, vx, vy);
+        this.vmax = vmax;
         this.al = new ArrayList<>(0);
         
         try {
@@ -45,9 +51,17 @@ public class Ship extends Shape {
         } catch (IOException ex) {
             System.out.println(ex);
         }
+        
+        calcVDiag();
     }
     
-    // TODO finish method
+    private void calcVDiag(){
+        double temp = Math.sqrt(Math.pow(vmax, 2) / 2);
+        vDiag = (int) temp;
+        System.out.println(temp);
+        System.out.println("rounded for game: " + vDiag);
+    }
+    
     public void calcAlpha(){
         alpha = Math.atan2(-(mouseX - x), mouseY - y);
     }
@@ -85,7 +99,7 @@ public class Ship extends Shape {
     
     /** 
      * Fuer korrekte Diagonal-Bewegung mit Vorraussetzung vx = vy
-     * vx_neu = sqr[(vx_alt^2) / 2] 
+     * vx_neu = sqr[(vx_alt^2) / 2]  -> s.o.
      * Diese Art der Steuerung hat den "Nachteil", dass eine Richtung pro Achse die andere dominiert.
      * D.h. wenn z.B. moveUp und moveDown angesprochen werden, bewegt das Schiff sich immer nach oben,
      * unabhaengig von der Reihenfolge in der die entsprechenden Tasten gedrueckt wurden
@@ -94,31 +108,31 @@ public class Ship extends Shape {
     public void moveShip(){
         if(pressedW){
             if(pressedA){
-                vx = -4;
-                vy = -4;
+                vx = - vDiag;
+                vy = - vDiag;
             } else if(pressedD){
-                vx = 4;
-                vy = -4;
+                vx = vDiag;
+                vy = - vDiag;
             } else {
                 vx = 0;
-                vy = -6;
+                vy = - vmax;
             }
         } else if(pressedS){
             if(pressedA){
-                vx = -4;
-                vy = 4;
+                vx = - vDiag;
+                vy = vDiag;
             } else if(pressedD){
-                vx = 4;
-                vy = 4;
+                vx = vDiag;
+                vy = vDiag;
             } else {
                 vx = 0;
-                vy = 6;
+                vy = vmax;
             } 
         } else if(pressedA){
-            vx = -6;
+            vx = - vmax;
             vy = 0;
         } else if(pressedD){
-            vx = 6;
+            vx = vmax;
             vy = 0;
         } else {
             vx = 0;

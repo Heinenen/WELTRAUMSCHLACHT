@@ -19,7 +19,9 @@ public class Simulation {
         AnimationPanel panel = frame.getAnimationPanel();
         
         // Schiff erzeugen und anmelden
-        Ship g = new Ship(100, 30, 0, 0, "img/magician2.png");
+        // change 5th parameter ( >1 ) to change the speed of the ship
+        // standard = 6
+        Ship g = new Ship(100, 30, 0, 0, 6, "img/magician2.png");
         panel.registerPlayer(g);
         
         // Fenster berechnen und sichtbar setzen
