@@ -3,12 +3,12 @@ package game;
 /**
  * Diese Klasse ist ein Modell eines 2D-Balls, der auf einer Animationsleinwand
  * bewegt und gezeichnet wird.
- * Objekte der Klasse Shot besitzen die (x/y)-Koordinaten des Mittelpunkts,
+ * Objekte der Klasse ShotA besitzen die (x/y)-Koordinaten des Mittelpunkts,
  einen Radius und "Geschwindigkeiten" in x- bzw. y-Richtung.
  * 
  * @author mars
  */
-public class BoundedBall extends Shot {
+public class BoundedBall extends ShotA {
     /**
      * BoundingBox
      */
@@ -34,8 +34,11 @@ public class BoundedBall extends Shot {
      * @param box
      */
     public BoundedBall(int x, int y, int vx, int vy, int radius, BoundingBox box) {
-        super(x, y, vx, vy, radius );
-        this.box = box;       
+        super(x, y);
+        this.vx = vx;
+        this.vy = vy;
+        this.radius = radius;
+        this.box = box;
     }   
 
     /**

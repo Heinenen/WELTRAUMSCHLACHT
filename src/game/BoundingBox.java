@@ -17,9 +17,11 @@ public class BoundingBox extends Shape
     private final int height;
 
     public BoundingBox(int x, int y, int vx, int vy, int width, int height) {
-        super(x, y, vx, vy);
+        super(x, y);
         this.width = width;
         this.height = height;
+        this.vx = vx;
+        this.vy = vy;
     }
 
     @Override

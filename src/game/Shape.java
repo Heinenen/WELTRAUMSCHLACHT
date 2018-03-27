@@ -54,14 +54,12 @@ public abstract class Shape
      * Constructor for objects of class Shape
      * @param x
      * @param y
-     * @param vx
-     * @param vy
      */
-    public Shape(int x, int y, int vx, int vy) {
+    public Shape(int x, int y) {
         this.x = x;
         this.y = y;
-        this.vx = vx;
-        this.vy = vy;
+        vx = 0;
+        vy = 0;
     }
     
         /**

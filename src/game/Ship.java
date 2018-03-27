@@ -36,14 +36,13 @@ public class Ship extends Shape {
      * Constructor for objects of class Graphic
      * @param x
      * @param y
-     * @param vx
-     * @param vy
      * @param vmax
      * @param fileName
      */
-    public Ship(int x, int y, int vx, int vy, int vmax, String fileName) {
-        super(x, y, vx, vy);
+    public Ship(int x, int y, int vmax, String fileName) {
+        super(x, y);
         this.vmax = vmax;
+        
         this.al = new ArrayList<>(0);
         
         try {
@@ -142,10 +141,8 @@ public class Ship extends Shape {
     
     
     public void shoot(){
-        ShotA a = new ShotA(x, y, 5, 5, 50);
+        ShotA a = new ShotA(x, y);
         addShot(a);
-        ShotA b = new ShotA(x, y, 7, 10, 20);
-        addShot(b);
     }
     
     public void addShot(ShotA shot){

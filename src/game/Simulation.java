@@ -21,7 +21,7 @@ public class Simulation {
         // Schiff erzeugen und anmelden
         // change 5th parameter ( >1 ) to change the speed of the ship
         // standard = 6
-        Ship g = new Ship(100, 30, 0, 0, 6, "img/magician2.png");
+        Ship g = new Ship(100, 30, 6, "img/magician2.png");
         panel.registerPlayer(g);
         
         // Fenster berechnen und sichtbar setzen
