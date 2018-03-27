@@ -16,7 +16,7 @@ public class BoundingBox extends Shape
     private final int width;
     private final int height;
 
-    public BoundingBox(double x, double y, double vx, double vy, int width, int height) {
+    public BoundingBox(int x, int y, int vx, int vy, int width, int height) {
         super(x, y, vx, vy);
         this.width = width;
         this.height = height;
@@ -31,19 +31,19 @@ public class BoundingBox extends Shape
         g2d.setColor(c);
     }
 
-    public double getLeftX() {
+    public int getLeftX() {
         return x;
     }
 
-    public double getRightX() {
+    public int getRightX() {
         return x + width;
     }
 
-    public double getTopY() {
+    public int getTopY() {
         return y;
     }
 
-    public double getBottomY() {
+    public int getBottomY() {
         return y + height;
     }
 }

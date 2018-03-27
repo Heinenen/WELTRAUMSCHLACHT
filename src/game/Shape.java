@@ -15,22 +15,22 @@ public abstract class Shape
      /**
      * x-Koordinate des Mittelpunkts
      */
-    protected double x;
+    protected int x;
 
     /**
      * y-Koordinate des Mittelpunkts
      */
-    protected double y;
+    protected int y;
 
     /**
      * "Geschwindigkeit" in x-Richtung
      */    
-    protected double vx;
+    protected int vx;
 
     /**
      * "Geschwindigkeit in y-Richtung
      */
-    protected double vy;
+    protected int vy;
     
     
     protected BufferedImage image;
@@ -57,7 +57,7 @@ public abstract class Shape
      * @param vx
      * @param vy
      */
-    public Shape(double x, double y, double vx, double vy) {
+    public Shape(int x, int y, int vx, int vy) {
         this.x = x;
         this.y = y;
         this.vx = vx;
@@ -95,11 +95,11 @@ public abstract class Shape
         return temp;
     }
 
-    public double getX() {
+    public int getX() {
         return x;
     }
 
-    public double getY() {
+    public int getY() {
         return y;
     }
     
