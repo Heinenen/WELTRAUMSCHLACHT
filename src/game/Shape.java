@@ -77,7 +77,7 @@ public abstract class Shape
 
     
     public void calcAlpha(){
-        alpha = Math.atan2(-(mouseX - x), mouseY - y);
+        alpha = Math.atan2(-(mouseX - x), mouseY - y) + Math.PI;
     }
     
     public Image rotateImage(Image src, double rad){

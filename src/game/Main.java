@@ -3,6 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
+/*
+FEATURES:
+drehende Projektile
+mehrere Schifftypen
+mehrere Projektiltypen
+Powerups: siehe z.B. BeatHazard
+mehrere Gegnertypen / Asteroiden
+Schuesse aus der Schiffwaffe -> aus der richtigen Position
+*/
+
 package game;
 
 /**

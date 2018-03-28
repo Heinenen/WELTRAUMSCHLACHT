@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 /**
@@ -50,6 +51,7 @@ public class ShotA extends Shape {
     @Override
     public void paint(Graphics2D g2d) {
         int diameter = 2 * radius;
+        g2d.setColor(Color.green);
         g2d.fillOval(x - radius, y - radius, diameter, diameter);
     }
 }
