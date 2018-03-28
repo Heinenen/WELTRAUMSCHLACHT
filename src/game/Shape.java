@@ -4,14 +4,11 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
-/**
- * Write a description of class Shape here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+/** 
+ * @author Thomas
  */
-public abstract class Shape
-{
+public abstract class Shape {
+    
      /**
      * x-Koordinate des Mittelpunkts
      */

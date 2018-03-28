@@ -8,10 +8,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 /**
- * Write a description of class Ship here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Thomas
  */
 
 // AKA Graphic

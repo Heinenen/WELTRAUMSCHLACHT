@@ -17,7 +17,7 @@ import java.awt.event.MouseMotionListener;
  * Leinwand zur Darstellung der Animationsobjekte und zur Steuerung der
  * Animation.
  *
- * @author mars
+ * @author Thomas
  */
 public class AnimationPanel extends JPanel {
 

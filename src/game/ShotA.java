@@ -9,7 +9,7 @@ import java.awt.Graphics2D;
  * Objekte der Klasse ShotA besitzen die (x/y)-Koordinaten des Mittelpunkts,
  einen Radius und "Geschwindigkeiten" in x- bzw. y-Richtung.
  * 
- * @author mars
+ * @author Thomas
  */
 
 // AKA Ball
@@ -19,8 +19,8 @@ public class ShotA extends Shape {
     /**
      * Radius des Balles
      */
-    
     protected int radius;
+    
     private final int v;
 
 

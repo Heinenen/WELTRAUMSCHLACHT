@@ -7,10 +7,9 @@ import java.awt.geom.Rectangle2D;
 
 /**
  * Eine BoundingBox 
- * @author mars
+ * @author Thomas
  */
-public class BoundingBox extends Shape
-{
+public class BoundingBox extends Shape {
 
 
     private final int width;

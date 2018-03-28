@@ -6,7 +6,7 @@ package game;
  * Objekte der Klasse ShotA besitzen die (x/y)-Koordinaten des Mittelpunkts,
  einen Radius und "Geschwindigkeiten" in x- bzw. y-Richtung.
  * 
- * @author mars
+ * @author Thomas
  */
 public class BoundedBall extends ShotA {
     /**

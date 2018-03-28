@@ -1,10 +1,9 @@
 package game;
 
-import java.util.ArrayList;
 /**
  * Klasse zur Initialisierung und Steuerung der Simulation.
  *
- * @author mars
+ * @author Thomas
  */
 public class Simulation {
 

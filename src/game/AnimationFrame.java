@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 /**
  * Fenster zur Darstellung der Animation.
  * 
- * @author mars
+ * @author Thomas
  */
 public class AnimationFrame extends JFrame {
     /**
