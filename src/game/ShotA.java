@@ -20,7 +20,7 @@ public class ShotA extends Shape {
      */
     
     protected int radius;
-    private int v;
+    private final int v;
 
 
 
@@ -31,7 +31,7 @@ public class ShotA extends Shape {
      */
     public ShotA(int x, int y) {
         super(x, y);
-        this.radius = 20;
+        this.radius = 5;
         this.v = 20;
     }
     
@@ -50,7 +50,6 @@ public class ShotA extends Shape {
     @Override
     public void paint(Graphics2D g2d) {
         int diameter = 2 * radius;
-        g2d.rotate(alpha , x, y);
-        g2d.fillOval(x - radius, y - radius, radius, diameter);
+        g2d.fillOval(x - radius, y - radius, diameter, diameter);
     }
 }
