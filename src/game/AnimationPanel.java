@@ -26,7 +26,7 @@ public class AnimationPanel extends JPanel {
      */
     private final Shape[] shapes;
     private int nShapes;
-    private final int MAX_N_SHAPES = 100;   
+    private final int MAX_N_SHAPES = 1000000;   
     
     boolean mousePressed = false;
 
@@ -128,6 +128,10 @@ public class AnimationPanel extends JPanel {
     private class AnimationTask extends TimerTask {
         @Override
         public void run() {
+            if(player.shoot()){
+                register(player.getShotA());
+            }
+            
             // bewege die Bälle
             moveAll();
             // aktualisiere die Leinwand
@@ -211,7 +215,7 @@ public class AnimationPanel extends JPanel {
             player.setMouseX(mx);
             player.setMouseY(my);
             
-            //System.out.println("MouseLocation: " + mx + ", " + my);
+            System.out.println("MouseLocation: " + mx + ", " + my);
             
             me.consume();
         }

@@ -30,17 +30,7 @@ public class Simulation {
 
         // Animation starten
         frame.startAnimation();
-        
-        g.shoot();
-        registerShots(panel, g);
     }
     
-    public static void registerShots(AnimationPanel p, Ship g){
-        ArrayList<ShotA> al = new ArrayList<>();
-        al = g.getArrayList();
-        for(int i = 0; i < al.size(); i++){
-            p.register(al.get(i));
-        }
-    }
 }
 

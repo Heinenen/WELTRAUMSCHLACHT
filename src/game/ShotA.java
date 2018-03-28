@@ -20,6 +20,7 @@ public class ShotA extends Shape {
      */
     
     protected int radius;
+    private int v;
 
 
 
@@ -31,15 +32,15 @@ public class ShotA extends Shape {
     public ShotA(int x, int y) {
         super(x, y);
         this.radius = 20;
-        
-        double v = 20;
-        double[] vec = new double[2];
-        vec = calcShotV(v);
-        this.vx = (int) vec[0];
-        this.vy = (int) vec[1];
+        this.v = 20;
     }
     
-
+    public void velocity(){
+        double[] vec;
+        vec = calcShotV(v);
+        vx = (int) vec[0];
+        vy = (int) vec[1];
+    }
 
     /**
      * Der ShotA zeichnet sich selbst auf der Leinwand.

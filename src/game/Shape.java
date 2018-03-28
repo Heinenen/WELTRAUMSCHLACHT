@@ -50,8 +50,8 @@ public abstract class Shape
      */
     protected double alpha;
     
-    private double tempX = 1000;
-    private double tempY = 500;
+    //private double tempX = 500;
+    //private double tempY = 500;
     
     /**
      * Constructor for objects of class Shape
@@ -95,10 +95,9 @@ public abstract class Shape
     public double[] calcShotV(double v){
         double disSM;
         double[] vec = new double[2];
-        
         // Vektor SM
-        vec[0] = tempX - x;
-        vec[1] = tempY - y;
+        vec[0] = mouseX - x;
+        vec[1] = mouseY - y;
         // Entfernung Schiff-Maus (Betrag Vektor)
         disSM = Math.sqrt(Math.pow(vec[0], 2) + Math.pow(vec[1], 2));
         vec[0] = (vec[0] / disSM) * v;

@@ -24,7 +24,7 @@ public class Ship extends Shape {
     
     private boolean mousePressed;
     
-    private int projectileCount;
+    private ShotA shotA;
     
     private int vDiag;
     
@@ -87,8 +87,8 @@ public class Ship extends Shape {
         this.mousePressed = mousePressed;
     }
     
-    public ArrayList getArrayList(){
-        return al;
+    public ShotA getShotA(){
+        return shotA;
     }
     
     
@@ -136,12 +136,16 @@ public class Ship extends Shape {
     }
     
     
-    public void shoot(){
-        ShotA a = new ShotA(x, y);
-        addShot(a);
+    public boolean shoot(){
+        if(mousePressed){
+            shotA = new ShotA(x, y);
+            shotA.setMouseX(mouseX);
+            shotA.setMouseY(mouseY);
+            shotA.velocity();
+            return true;
+        } else {
+            return false;
+        }
     }
     
-    public void addShot(ShotA shot){
-        al.add(shot);
-    }
 }
