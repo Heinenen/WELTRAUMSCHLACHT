@@ -1,5 +1,7 @@
 package game;
 
+import javax.swing.ImageIcon;
+
 /**
  * Klasse zur Initialisierung und Steuerung der Simulation.
  *
@@ -11,8 +13,10 @@ public class Simulation {
      * Erzeugt die Animationsobjekte und startet die Animation.
      */
     public static void startAnimation() {
-        // Fenster erzeugen
-        AnimationFrame frame = new AnimationFrame();
+        // Fenster mit erwünschten Abmessungen erzeugen
+        AnimationFrame frame = new AnimationFrame(1280, 720);
+        ImageIcon img = new ImageIcon("img/spaceshipa.png");
+        frame.setIconImage(img.getImage());
 
         // Animations-Leinwand
         AnimationPanel panel = frame.getAnimationPanel();

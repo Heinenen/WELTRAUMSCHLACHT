@@ -40,8 +40,6 @@ public class Ship extends Shape {
         super(x, y);
         this.vmax = vmax;
         
-        this.al = new ArrayList<>(0);
-        
         try {
             image = (BufferedImage) ImageIO.read(new File(fileName));
         } catch (IOException ex) {

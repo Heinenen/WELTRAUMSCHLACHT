@@ -215,7 +215,7 @@ public class AnimationPanel extends JPanel {
             player.setMouseX(mx);
             player.setMouseY(my);
             
-            System.out.println("MouseLocation: " + mx + ", " + my);
+            // System.out.println("MouseLocation: " + mx + ", " + my);
             
             me.consume();
         }

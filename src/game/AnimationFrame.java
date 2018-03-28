@@ -2,6 +2,12 @@ package game;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -17,14 +23,22 @@ public class AnimationFrame extends JFrame {
 
     /**
      * Konstruktor zur Erzeugung des Fensters.
+     * @param frameWidth
+     * @param frameHeight
      */
-    public AnimationFrame() {
-        super("AnimationDemo");
-
-        setPreferredSize(new Dimension(1280, 720));
+    public AnimationFrame(int frameWidth, int frameHeight) {
+        super("WELTRAUMSCHLACHT");
+        
+        setPreferredSize(new Dimension(frameWidth, frameHeight));
         initComponents();
     }
-
+    /*
+    private ImageIcon windowIcon(){
+        ImageIcon tempImg = new ImageIcon("img/spaceshipa.png");
+        super.setIconImage(tempImg);
+        return tempImg;
+    }
+*/
     /**
      * Initialisiert die Bausteine des Fensters.
      */
@@ -48,6 +62,5 @@ public class AnimationFrame extends JFrame {
      */
     public void startAnimation() {
         animationPanel.start();
-    }
-    
+    }    
 }

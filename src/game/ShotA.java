@@ -43,6 +43,13 @@ public class ShotA extends Shape {
         vy = (int) vec[1];
     }
 
+    @Override
+    public void move() {
+        super.move();
+    }
+    
+    
+
     /**
      * Der ShotA zeichnet sich selbst auf der Leinwand.
      *
