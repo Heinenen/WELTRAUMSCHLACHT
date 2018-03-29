@@ -59,7 +59,8 @@ public class AnimationPanel extends JPanel {
     public void register(Shape shape) {
         shapes[findEmptyCell()] = shape;
         nShapes++;
-        System.out.println(findEmptyCell());
+        // uncomment to see usage of array memory
+         System.out.println(findEmptyCell()); 
     }
     
     public void registerPlayer(Ship player) {
@@ -148,7 +149,6 @@ public class AnimationPanel extends JPanel {
     private class AnimationTask extends TimerTask {
         @Override
         public void run() {
-            System.out.println(Simulation.frameWidth);
             if(player.shoot()){
                 register(player.getShotA());
             }
