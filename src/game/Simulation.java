@@ -12,8 +12,8 @@ public class Simulation {
     /**
      * Gewünschte Abmessungen des Fenster (in px)
      */
-    public static int frameWidth = 1280;
-    public static int frameHeight = 720;
+    public static int frameWidth = 1600;
+    public static int frameHeight = 800;
     
     /**
      * Erzeugt die Animationsobjekte und startet die Animation.
@@ -21,6 +21,7 @@ public class Simulation {
     public static void startAnimation() {
         // Fenster erzeugen
         AnimationFrame frame = new AnimationFrame(frameWidth, frameHeight);
+        frame.setResizable(false);
         ImageIcon img = new ImageIcon("img/spaceshipa.png");
         frame.setIconImage(img.getImage());
 

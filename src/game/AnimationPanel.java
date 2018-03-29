@@ -91,6 +91,7 @@ public class AnimationPanel extends JPanel {
                 }
             }
         }
+        player.moveShip();
     }
 
     /**
@@ -185,7 +186,6 @@ public class AnimationPanel extends JPanel {
                 player.setPressedD(true);
             }
             
-            player.moveShip();
             e.consume();
         }
         
@@ -206,7 +206,6 @@ public class AnimationPanel extends JPanel {
                 player.setPressedD(false);
             }
             
-            player.moveShip();
             e.consume();
         }
     }

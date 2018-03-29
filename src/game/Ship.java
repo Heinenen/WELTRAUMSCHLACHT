@@ -27,7 +27,6 @@ public class Ship extends Shape {
     
     private int vmax;
     
-    ArrayList<ShotA> al;
     
     /**
      * Constructor for objects of class Graphic
@@ -88,7 +87,7 @@ public class Ship extends Shape {
     
     
     /** 
-     * Fuer korrekte Diagonal-Bewegung mit Vorraussetzung vx = vy
+     * Fuer korrekte Diagonal-Bewegung:
      * vx_neu = sqr[(vx_alt^2) / 2]  -> s.o.
      * Diese Art der Steuerung hat den "Nachteil", dass eine Richtung pro Achse die andere dominiert.
      * D.h. wenn z.B. moveUp und moveDown angesprochen werden, bewegt das Schiff sich immer nach oben,
