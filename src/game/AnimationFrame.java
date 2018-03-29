@@ -9,7 +9,11 @@ import javax.swing.JFrame;
  * 
  * @author Thomas
  */
+
 public class AnimationFrame extends JFrame {
+    
+    public static int frameWidth;
+    public static int frameHeight;
     /**
      * Leinwand, auf der die Animationsobjekte gezeichnet werden.
      */
@@ -22,6 +26,8 @@ public class AnimationFrame extends JFrame {
      */
     public AnimationFrame(int frameWidth, int frameHeight) {
         super("WELTRAUMSCHLACHT");
+        AnimationFrame.frameWidth = frameWidth;
+        AnimationFrame.frameHeight = frameHeight;
         setPreferredSize(new Dimension(frameWidth, frameHeight));
         initComponents();
     }

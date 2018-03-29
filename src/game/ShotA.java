@@ -45,7 +45,7 @@ public class ShotA extends Shape {
 
     @Override
     public void move() {
-        if(Simulation.frameWidth * 2 < Math.abs(x) || Simulation.frameHeight * 2 < Math.abs(y)){
+        if(AnimationFrame.frameWidth * 2 < Math.abs(x) || AnimationFrame.frameHeight * 2 < Math.abs(y)){
             outOfPosition = true;
         }
         super.move();

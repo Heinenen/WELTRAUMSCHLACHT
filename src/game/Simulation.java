@@ -12,13 +12,19 @@ public class Simulation {
     /**
      * Gewünschte Abmessungen des Fenster (in px)
      */
-    public static int frameWidth = 1600;
-    public static int frameHeight = 800;
+    public final int frameWidth = 1600;
+    public final int frameHeight = 800;
+    
+    /**
+     * StartPosition des Schiffs
+     */
+    public static int shipStartX;
+    public static int shipStartY;
     
     /**
      * Erzeugt die Animationsobjekte und startet die Animation.
      */
-    public static void startAnimation() {
+    public void startAnimation() {
         // Fenster erzeugen
         AnimationFrame frame = new AnimationFrame(frameWidth, frameHeight);
         frame.setResizable(false);
@@ -31,7 +37,9 @@ public class Simulation {
         // Schiff erzeugen und anmelden
         // change 3rd parameter (with a number > 1 ) to change the speed of the ship
         // standard = 6
-        Ship g = new Ship(100, 30, 6, "img/SPACESHIPA.png");
+        shipStartX = frameWidth / 2;
+        shipStartY = frameHeight / 2;
+        Ship g = new Ship(shipStartX, shipStartY, 15, "img/SPACESHIPA.png");
         panel.registerPlayer(g);
         
         // Fenster berechnen und sichtbar setzen

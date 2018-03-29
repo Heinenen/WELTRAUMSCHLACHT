@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 /**
@@ -96,26 +95,102 @@ public class Ship extends Shape {
     
     public void moveShip(){
         if(pressedW){
+            // Bewegung nach oben bzw. diagonal nach oben
             if(pressedA){
-                moveShipUL();
-            } else if(pressedD){
-                moveShipUR();
-            } else {
-                moveShipU();
-            }
-        } else if(pressedS){
-            if(pressedA){
-                moveShipDL();
-            } else if(pressedD){
-                moveShipDR();
-            } else {
-                moveShipD();
+                if(y - image.getHeight() / 2 <= 0 && x - image.getWidth() / 2 <= 0){
+                    vx = 0;
+                    vy = 0;
+                } else if(y - image.getHeight() / 2 <= 0){
+                    vx = -vDiag;
+                    vy = 0;
+                } else if(x - image.getWidth() / 2 <= 0){
+                    vx = 0;
+                    vy = -vDiag;
+                } else {
+                    moveShipUL();
+                }
             } 
-        } else if(pressedA){
-            moveShipL();
-        } else if(pressedD){
-            moveShipR();
-        } else {
+            
+            else if(pressedD){
+                if(y - image.getHeight() / 2 <= 0 && x + image.getWidth() / 2 >= AnimationFrame.frameWidth){
+                    vx = 0;
+                    vy = 0;
+                } else if(y - image.getHeight() / 2 <= 0){
+                    vx = vDiag;
+                    vy = 0;
+                } else if(x + image.getWidth() / 2 >= AnimationFrame.frameWidth){
+                    vx = 0;
+                    vy = -vDiag;
+                } else {
+                    moveShipUR();
+                }
+            } else {
+                if(y - image.getHeight() / 2 <= 0){
+                    vy = 0;
+                } else {
+                    moveShipU();
+                }
+            }
+        } 
+        
+        // Bewegung nach unten bzw. diagonal nach unten
+        else if(pressedS){
+            if(pressedA){
+                if(y + image.getHeight() >= AnimationFrame.frameHeight && x - image.getWidth() / 2 <= 0){
+                vx = 0;
+                vy = 0;
+                } else if(y + image.getHeight() >= AnimationFrame.frameHeight){
+                    vx = -vDiag;
+                    vy = 0;
+                } else if(x - image.getWidth() / 2 <= 0){
+                    vx = 0;
+                    vy = vDiag;
+                } else {
+                    moveShipDL();
+                }
+                
+            } else if(pressedD){
+                if(y + image.getHeight() >= AnimationFrame.frameHeight && x + image.getWidth() / 2 >= AnimationFrame.frameWidth){
+                    vx = 0;
+                    vy = 0;
+                } else if(y + image.getHeight() >= AnimationFrame.frameHeight){
+                    vx = vDiag;
+                    vy = 0;
+                } else if(x + image.getWidth() / 2 >= AnimationFrame.frameWidth){
+                    vx = 0;
+                    vy = vDiag;
+                } else {
+                    moveShipDR();
+                }
+            } else {
+                if(y + image.getHeight() >= AnimationFrame.frameHeight){
+                    vy = 0;
+                } else {
+                    moveShipD();
+                }
+            }
+        } 
+        
+        // Bewegung nach links
+        else if(pressedA){
+            if(x - image.getWidth() / 2 <= 0){
+                vx = 0;
+            } else {
+                moveShipL();
+            }
+        }
+        
+        // Bewegung nach rechts
+        else if(pressedD){
+            if(x + image.getWidth() / 2 >= AnimationFrame.frameWidth){
+                vx = 0;
+            } else {
+                moveShipR();
+            }
+        }
+        
+        // keine Bewegung
+        else {
             moveShipS();
         }
     }

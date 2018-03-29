@@ -21,6 +21,7 @@ public class Main {
     
     public static void main(String[] args) {
         
-        Simulation.startAnimation();
+        Simulation sim = new Simulation();
+        sim.startAnimation();
     }
 }
