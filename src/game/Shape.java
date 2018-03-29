@@ -47,8 +47,10 @@ public abstract class Shape {
      */
     protected double alpha;
     
-    //private double tempX = 500;
-    //private double tempY = 500;
+    /**
+     * true if the object is, where it shouldn't be
+     */
+    protected boolean outOfPosition = false;
     
     /**
      * Constructor for objects of class Shape
@@ -109,6 +111,10 @@ public abstract class Shape {
 
     public int getY() {
         return y;
+    }
+    
+    public boolean getOutOfPosition(){
+        return outOfPosition;
     }
     
     public void setMouseX(int mouseX) {

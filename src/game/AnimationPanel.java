@@ -57,8 +57,9 @@ public class AnimationPanel extends JPanel {
      * @param shape
      */
     public void register(Shape shape) {
-        shapes[nShapes] = shape;
+        shapes[findEmptyCell()] = shape;
         nShapes++;
+        System.out.println(findEmptyCell());
     }
     
     public void registerPlayer(Ship player) {
@@ -66,12 +67,28 @@ public class AnimationPanel extends JPanel {
         register(player);
     }
 
+    public int findEmptyCell(){
+        int finder = 0;
+        for(int i = 0; i < shapes.length; i++){
+            if(shapes[i] == null){
+                finder = i;
+                break;
+            }
+        }
+        return finder;
+    }
     /**
      * Alle registierten Bälle werden bewegt.
      */
     private void moveAll() {
         for (int i = 0; i < nShapes; i++) {
-            shapes[i].move();
+            if (shapes[i] != null){
+                if(shapes[i].getOutOfPosition()){
+                    shapes[i] = null;
+                } else {
+                    shapes[i].move();
+                }
+            }
         }
     }
 
@@ -80,7 +97,10 @@ public class AnimationPanel extends JPanel {
      * @param g2d aktueller Grafikkontext
      */
     private void paintAll(Graphics2D g2d) {
-        for (int i = 0; i < nShapes; i++) {        
+        for (int i = 0; i < nShapes; i++) {
+            if (shapes[i] == null){
+                continue;
+            }
             shapes[i].paint(g2d);
         }
                             
@@ -128,6 +148,7 @@ public class AnimationPanel extends JPanel {
     private class AnimationTask extends TimerTask {
         @Override
         public void run() {
+            System.out.println(Simulation.frameWidth);
             if(player.shoot()){
                 register(player.getShotA());
             }
