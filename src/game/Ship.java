@@ -98,37 +98,83 @@ public class Ship extends Shape {
     public void moveShip(){
         if(pressedW){
             if(pressedA){
-                vx = - vDiag;
-                vy = - vDiag;
+                moveShipUL();
             } else if(pressedD){
-                vx = vDiag;
-                vy = - vDiag;
+                moveShipUR();
             } else {
-                vx = 0;
-                vy = - vmax;
+                moveShipU();
             }
         } else if(pressedS){
             if(pressedA){
-                vx = - vDiag;
-                vy = vDiag;
+                moveShipDL();
             } else if(pressedD){
-                vx = vDiag;
-                vy = vDiag;
+                moveShipDR();
             } else {
-                vx = 0;
-                vy = vmax;
+                moveShipD();
             } 
         } else if(pressedA){
-            vx = - vmax;
-            vy = 0;
+            moveShipL();
         } else if(pressedD){
-            vx = vmax;
-            vy = 0;
+            moveShipR();
         } else {
-            vx = 0;
-            vy = 0;
+            moveShipS();
         }
     }
+    
+    // move UpLeft
+    public void moveShipUL(){
+        vx = - vDiag;
+        vy = - vDiag;
+    }
+    
+    // move UpRight
+    public void moveShipUR(){
+        vx = vDiag;
+        vy = - vDiag;
+    }
+    
+    // move Up
+    public void moveShipU(){
+        vx = 0;
+        vy = - vmax;
+    }
+    
+    // move DownLeft
+    public void moveShipDL(){
+        vx = - vDiag;
+        vy = vDiag;
+    }
+    
+    // move DownRight
+    public void moveShipDR(){
+        vx = vDiag;
+        vy = vDiag;
+    }
+    
+    // move Down
+    public void moveShipD(){
+        vx = 0;
+        vy = vmax;
+    }
+    
+    // move Left
+    public void moveShipL(){
+        vx = - vmax;
+        vy = 0;
+    }
+    
+    // move Right
+    public void moveShipR(){
+        vx = vmax;
+        vy = 0;
+    }
+    
+    // Stop
+    public void moveShipS(){
+        vx = 0;
+        vy = 0;
+    }
+    
     
     
     public boolean shoot(){
