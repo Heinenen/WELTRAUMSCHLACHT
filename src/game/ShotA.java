@@ -39,8 +39,13 @@ public class ShotA extends Shape {
     public void velocity(){
         double[] vec;
         vec = calcShotV(v);
-        vx = (int) vec[0];
-        vy = (int) vec[1];
+        if((int) vec[0] == 0  && (int) vec[1] == 0){
+            vx = 0;
+            vy = v;
+        } else {
+            vx = (int) vec[0];
+            vy = (int) vec[1];
+        }
     }
 
     @Override
