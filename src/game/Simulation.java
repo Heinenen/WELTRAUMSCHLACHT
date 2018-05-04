@@ -12,8 +12,8 @@ public class Simulation {
     /**
      * Gewünschte Abmessungen des Fenster (in px)
      */
-    public final int frameWidth = 1600;
-    public final int frameHeight = 800;
+    public final int frameWidth = 800;
+    public final int frameHeight = 500;
     
     /**
      * StartPosition des Schiffs

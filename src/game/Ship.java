@@ -136,10 +136,10 @@ public class Ship extends Shape {
         // Bewegung nach unten bzw. diagonal nach unten
         else if(pressedS){
             if(pressedA){
-                if(y + image.getHeight() >= AnimationFrame.frameHeight && x - image.getWidth() / 2 <= 0){
+                if(y + image.getHeight() / 2 >= AnimationFrame.frameHeight && x - image.getWidth() / 2 <= 0){
                 vx = 0;
                 vy = 0;
-                } else if(y + image.getHeight() >= AnimationFrame.frameHeight){
+                } else if(y + image.getHeight() / 2 >= AnimationFrame.frameHeight){
                     vx = -vDiag;
                     vy = 0;
                 } else if(x - image.getWidth() / 2 <= 0){
@@ -150,10 +150,10 @@ public class Ship extends Shape {
                 }
                 
             } else if(pressedD){
-                if(y + image.getHeight() >= AnimationFrame.frameHeight && x + image.getWidth() / 2 >= AnimationFrame.frameWidth){
+                if(y + image.getHeight() / 2 >= AnimationFrame.frameHeight && x + image.getWidth() / 2 >= AnimationFrame.frameWidth){
                     vx = 0;
                     vy = 0;
-                } else if(y + image.getHeight() >= AnimationFrame.frameHeight){
+                } else if(y + image.getHeight() / 2 >= AnimationFrame.frameHeight){
                     vx = vDiag;
                     vy = 0;
                 } else if(x + image.getWidth() / 2 >= AnimationFrame.frameWidth){
@@ -163,7 +163,7 @@ public class Ship extends Shape {
                     moveShipDR();
                 }
             } else {
-                if(y + image.getHeight() >= AnimationFrame.frameHeight){
+                if(y + image.getHeight() / 2 >= AnimationFrame.frameHeight){
                     vy = 0;
                 } else {
                     moveShipD();
