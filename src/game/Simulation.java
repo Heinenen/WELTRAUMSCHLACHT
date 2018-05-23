@@ -12,8 +12,8 @@ public class Simulation {
     /**
      * Gewünschte Abmessungen des Fenster (in px)
      */
-    public final int frameWidth = 800;
-    public final int frameHeight = 500;
+    public final int frameWidth = 1200;
+    public final int frameHeight = 800;
     
     /**
      * StartPosition des Schiffs
@@ -41,6 +41,9 @@ public class Simulation {
         shipStartY = frameHeight / 2;
         Ship g = new Ship(shipStartX, shipStartY, 15, "img/SPACESHIPA.png");
         panel.registerPlayer(g);
+        
+        Asteroid a = new Asteroid(100,100, 1);
+        panel.register(a);
         
         // Fenster berechnen und sichtbar setzen
         frame.pack();
