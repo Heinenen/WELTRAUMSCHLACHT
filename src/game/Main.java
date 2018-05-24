@@ -18,10 +18,10 @@ package game;
 // TODO finish method calcAlpha in Ship
 public class Main {
     
-    
     public static void main(String[] args) {
         
         Simulation sim = new Simulation();
         sim.startAnimation();
     }
+    
 }

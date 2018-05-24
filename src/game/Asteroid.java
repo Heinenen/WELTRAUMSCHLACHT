@@ -21,7 +21,7 @@ public class Asteroid extends Enemy {
             System.out.println(ex);
         }
     }
-    
+
     @Override
     public void paint(Graphics2D g2d){
         g2d.drawImage(image, null, x, y);

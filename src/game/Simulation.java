@@ -21,6 +21,11 @@ public class Simulation {
     public static int shipStartX;
     public static int shipStartY;
     
+        
+    public int rd(int Min, int Max){
+        return (int) (Min + (Math.random() * (Max - Min)));
+    }
+    
     /**
      * Erzeugt die Animationsobjekte und startet die Animation.
      */
@@ -35,16 +40,14 @@ public class Simulation {
         AnimationPanel panel = frame.getAnimationPanel();
         
         // Schiff erzeugen und anmelden
-        // change 3rd parameter (with a number > 1 ) to change the speed of the ship
-        // standard = 6
+        // 3. Parameter (mit einer Zahl > 1 ) bestimmt die Geschwindigkeit des Schiffs
+        // Standard = 15
         shipStartX = frameWidth / 2;
         shipStartY = frameHeight / 2;
         Ship g = new Ship(shipStartX, shipStartY, 15, "img/SPACESHIPA.png");
         panel.registerPlayer(g);
-        
-        Asteroid a = new Asteroid(100,100, 1);
+        Asteroid a = new Asteroid(100, 100, 1);
         panel.register(a);
-        
         // Fenster berechnen und sichtbar setzen
         frame.pack();
         frame.setVisible(true);
