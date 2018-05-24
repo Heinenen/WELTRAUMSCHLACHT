@@ -28,6 +28,8 @@ public class Ship extends Shape {
     
     private boolean pause = true;
     
+    public static int shipX, shipY;
+    
     
     /**
      * Constructor for objects of class Graphic
@@ -38,6 +40,8 @@ public class Ship extends Shape {
      */
     public Ship(int x, int y, int vmax, String fileName) {
         super(x, y);
+        Ship.shipX = x;
+        Ship.shipY = y;
         this.vmax = vmax;
         
         try {
@@ -249,6 +253,15 @@ public class Ship extends Shape {
     public void moveShipS(){
         vx = 0;
         vy = 0;
+    }
+    
+    @Override
+    public void move() {
+        x = x + vx;
+        y = y + vy;
+        
+        Ship.shipX = x;
+        Ship.shipY = y;
     }
     
     

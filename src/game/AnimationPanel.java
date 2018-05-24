@@ -192,7 +192,6 @@ public class AnimationPanel extends JPanel {
         
         @Override
         public void run() {
-            
             // shoot every second tick
             if(pause){
                 if(player.shoot()){
@@ -207,6 +206,7 @@ public class AnimationPanel extends JPanel {
             if(asteroidPause == 10){
                 int rdx = rdx();
                 int rdy = rdy();
+                // calc asteroid (more or less) random direction with set speed (standard 5)
                 double[] aV = calcAV(5, rdx, rdy);
                 Asteroid a = new Asteroid(rdx, rdy, (int)aV[0], (int)aV[1]);
                 register(a);

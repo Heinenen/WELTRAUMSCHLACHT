@@ -12,14 +12,14 @@ public class Simulation {
     /**
      * Gewünschte Abmessungen des Fenster (in px)
      */
-    public final int frameWidth = 1400;
-    public final int frameHeight = 800;
+    private final int frameWidth = 1400;
+    private final int frameHeight = 800;
     
     /**
      * StartPosition des Schiffs
      */
-    public static int shipStartX;
-    public static int shipStartY;
+    private int shipStartX;
+    private int shipStartY;
 
     
     /**

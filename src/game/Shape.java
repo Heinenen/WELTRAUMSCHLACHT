@@ -68,6 +68,9 @@ public abstract class Shape {
      * Diese Methode bewirkt das Verschieben des Balles in x- und y-Richtung.
      */
     public void move() {
+        if(AnimationFrame.frameWidth * 2 < Math.abs(x) || AnimationFrame.frameHeight * 2 < Math.abs(y)){
+            outOfPosition = true;
+        }
         x = x + vx;
         y = y + vy;
     }

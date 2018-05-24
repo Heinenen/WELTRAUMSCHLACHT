@@ -47,18 +47,8 @@ public class ShotA extends Shape {
             vy = (int) vec[1];
         }
     }
-
-    @Override
-    public void move() {
-        if(AnimationFrame.frameWidth * 2 < Math.abs(x) || AnimationFrame.frameHeight * 2 < Math.abs(y)){
-            outOfPosition = true;
-        }
-        super.move();
-        
-    }
     
     
-
     /**
      * Der ShotA zeichnet sich selbst auf der Leinwand.
      *

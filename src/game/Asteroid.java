@@ -12,6 +12,8 @@ import javax.imageio.ImageIO;
  */
 public class Asteroid extends Enemy {
     
+    private int shipX, shipY;
+    
     public Asteroid(int x, int y, int vx, int vy){
         super(x, y);
         this.vx = vx;
@@ -23,9 +25,33 @@ public class Asteroid extends Enemy {
             System.out.println(ex);
         }
     }
+    
+    @Override
+    public void move(){
+        super.move();
+        
+        // hit-check asteroid-ship
+        if((x < Ship.shipX + 45 && x > Ship.shipX - 45) && (y < Ship.shipY + 45 && y > Ship.shipY - 45)){
+            gameOver();
+        } else {
+            System.out.println(".");
+        }
+    }
+    
+    public void gameOver(){
+        System.out.println("You lose!");
+        
+        //TODO
+        // final score
+        // end simulatiion
+    }
+    
+    
+    
+    
 
     @Override
     public void paint(Graphics2D g2d){
-        g2d.drawImage(image, null, x, y);
+        g2d.drawImage(image, null, x - (int)(image.getWidth() / 2), y - (int)(image.getHeight() / 2));
     }
 }
