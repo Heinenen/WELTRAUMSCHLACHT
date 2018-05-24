@@ -33,7 +33,7 @@ public class ShotA extends Shape {
     public ShotA(int x, int y) {
         super(x, y);
         this.radius = 5;
-        this.v = 15;
+        this.v = 30;
     }
     
     public void velocity(){
@@ -48,6 +48,17 @@ public class ShotA extends Shape {
         }
     }
     
+    @Override
+    public String getName(){
+        return "ShotA";
+    }
+    
+    public void move(){
+        super.move();
+        if(x > AnimationFrame.frameWidth|| y > AnimationFrame.frameHeight || x < 0 || y < 0){
+            outOfPosition = true;
+        }
+    }
     
     /**
      * Der ShotA zeichnet sich selbst auf der Leinwand.

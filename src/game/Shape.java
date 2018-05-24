@@ -68,11 +68,16 @@ public abstract class Shape {
      * Diese Methode bewirkt das Verschieben des Balles in x- und y-Richtung.
      */
     public void move() {
-        if(AnimationFrame.frameWidth * 2 < Math.abs(x) || AnimationFrame.frameHeight * 2 < Math.abs(y)){
-            outOfPosition = true;
-        }
+//        if(AnimationFrame.frameWidth * 2 < Math.abs(x) || AnimationFrame.frameHeight * 2 < Math.abs(y)){
+//            outOfPosition = true;
+//        }
         x = x + vx;
         y = y + vy;
+    }
+    
+    public boolean isColliding(Shape other) {
+        int dis= (int) Math.sqrt((other.getX() - x)*(other.getX() - x) + (other.getY() - y)*(other.getY()- y));
+        return dis <= 27;
     }
 
     public abstract void paint(Graphics2D g2d);
@@ -93,6 +98,8 @@ public abstract class Shape {
         g2d.dispose();
         return temp;
     }
+    
+    public abstract String getName();
     
     public double[] calcShotV(double v){
         double disSM;

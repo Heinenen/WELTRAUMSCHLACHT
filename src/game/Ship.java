@@ -26,8 +26,6 @@ public class Ship extends Shape {
     
     private int vmax;
     
-    private boolean pause = true;
-    
     public static int shipX, shipY;
     
     
@@ -88,6 +86,11 @@ public class Ship extends Shape {
     
     public ShotA getShotA(){
         return shotA;
+    }
+    
+    @Override
+    public String getName(){
+        return "Ship";
     }
     
     
@@ -268,19 +271,11 @@ public class Ship extends Shape {
     
     public boolean shoot(){
         if(mousePressed){
-            
-            // if(pause){
-                shotA = new ShotA(x, y);
-                shotA.setMouseX(mouseX);
-                shotA.setMouseY(mouseY);
-                shotA.velocity(); 
-                pause = false;
-                return true;
-                
-//            } else {
-//                pause = true;
-//                return false;
-//            }
+            shotA = new ShotA(x, y);
+            shotA.setMouseX(mouseX);
+            shotA.setMouseY(mouseY);
+            shotA.velocity();
+            return true;
             
         } else {
             return false;

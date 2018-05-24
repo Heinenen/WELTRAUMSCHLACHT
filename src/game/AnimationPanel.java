@@ -2,6 +2,7 @@ package game;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Timer;
@@ -26,13 +27,15 @@ public class AnimationPanel extends JPanel {
      */
     private final Shape[] shapes;
     private int nShapes;
-    private final int MAX_N_SHAPES = 1000000;   
+    private final int MAX_N_SHAPES = 10000;   
     
     boolean mousePressed = false;
 
     private Ship player;
     
-    private boolean pause = true;
+    private int score = 0;
+    
+    private int shotPause = 0;
     private int asteroidPause = 0;
     
     private int mx, my;
@@ -54,6 +57,10 @@ public class AnimationPanel extends JPanel {
         this.addMouseMotionListener(new MyMouseMotionListener());
         this.addMouseListener(new MyMouseListener());
     }
+    
+            
+            
+
 
     /**
      * Anmelden eines Shapes zur Animation.
@@ -70,7 +77,32 @@ public class AnimationPanel extends JPanel {
         this.player = player;
         register(player);
     }
-
+    
+    public void checkCollision(){
+        
+        for(int i = 0; i < shapes.length; i++){
+            if(shapes[i] != null){
+                if("ShotA".equals(shapes[i].getName())){
+                    for(int j = 0; j < shapes.length; j++){
+                        if(shapes[j] != null){
+                            if("Asteroid".equals(shapes[j].getName())){
+                                if(shapes[i] != null && shapes[j] != null){
+                                    if(shapes[i].isColliding(shapes[j])){
+                                        shapes[i] = null;
+                                        shapes[j] = null;
+                                        if(!Asteroid.gameOver){
+                                            score = score + 100;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     public int findEmptyCell(){
         int finder = 0;
         for(int i = 0; i < shapes.length; i++){
@@ -85,16 +117,17 @@ public class AnimationPanel extends JPanel {
      * Alle registierten Bälle werden bewegt.
      */
     private void moveAll() {
-        for (int i = 0; i < nShapes; i++) {
-            if (shapes[i] != null){
-                if(shapes[i].getOutOfPosition()){
-                    shapes[i] = null;
-                } else {
-                    shapes[i].move();
+            for (int i = 0; i < nShapes; i++) {
+                if (shapes[i] != null){
+                    if(shapes[i].getOutOfPosition()){
+                        shapes[i] = null;
+                    } else {
+                        shapes[i].move();
+                    }
                 }
             }
-        }
-        player.moveShip();
+            player.moveShip();
+            checkCollision();
     }
 
     /**
@@ -107,6 +140,15 @@ public class AnimationPanel extends JPanel {
                 continue;
             }
             shapes[i].paint(g2d);
+        }
+        
+        g2d.setColor(Color.white);
+        g2d.drawString("Score: " + score, 0, 20);
+        
+        if(Asteroid.gameOver){
+            g2d.setColor(Color.red);
+            g2d.setFont(new Font("TimesRoman", Font.PLAIN, 150));
+            g2d.drawString("GAME OVER", 250, 400);
         }
                             
     }
@@ -192,34 +234,33 @@ public class AnimationPanel extends JPanel {
         
         @Override
         public void run() {
-            // shoot every second tick
-            if(pause){
-                if(player.shoot()){
-                    register(player.getShotA());
+            
+            if(!Asteroid.gameOver){
+                // shoot every second tick
+                if(shotPause == 10){
+                    if(player.shoot()){
+                        register(player.getShotA());
+                    }
+                    shotPause = 0;
                 }
-                pause = false;
-            } else {
-                pause = true;
+                shotPause++;
+                
+                // spawn asteroid
+                if(asteroidPause == 5){
+                    int rdx = rdx();
+                    int rdy = rdy();
+                    // calc asteroid (more or less) random direction with set speed (standard 5)
+                    double[] aV = calcAV(5, rdx, rdy);
+                    Asteroid a = new Asteroid(rdx, rdy, (int)aV[0], (int)aV[1]);
+                    register(a);
+                    asteroidPause = 0;
+                } else {
+                    asteroidPause++;
+                }
+                
+                moveAll();
+                repaint();
             }
-            
-            // spawn asteroid
-            if(asteroidPause == 10){
-                int rdx = rdx();
-                int rdy = rdy();
-                // calc asteroid (more or less) random direction with set speed (standard 5)
-                double[] aV = calcAV(5, rdx, rdy);
-                Asteroid a = new Asteroid(rdx, rdy, (int)aV[0], (int)aV[1]);
-                register(a);
-                asteroidPause = 0;
-            } else {
-                asteroidPause++;
-            }
-            
-            
-            // bewege die Bälle
-            moveAll();
-            // aktualisiere die Leinwand
-            repaint();
         }
     }
     

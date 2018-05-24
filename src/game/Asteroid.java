@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -13,6 +15,8 @@ import javax.imageio.ImageIO;
 public class Asteroid extends Enemy {
     
     private int shipX, shipY;
+    
+    public static boolean gameOver = false;
     
     public Asteroid(int x, int y, int vx, int vy){
         super(x, y);
@@ -29,24 +33,20 @@ public class Asteroid extends Enemy {
     @Override
     public void move(){
         super.move();
-        
+        if(AnimationFrame.frameWidth * 2 < Math.abs(x) || AnimationFrame.frameHeight * 2 < Math.abs(y)){
+            outOfPosition = true;
+        }
         // hit-check asteroid-ship
         if((x < Ship.shipX + 45 && x > Ship.shipX - 45) && (y < Ship.shipY + 45 && y > Ship.shipY - 45)){
-            gameOver();
-        } else {
-            System.out.println(".");
+            gameOver = true;
         }
     }
     
-    public void gameOver(){
-        System.out.println("You lose!");
-        
-        //TODO
-        // final score
-        // end simulatiion
+    
+    @Override
+    public String getName(){
+        return "Asteroid";
     }
-    
-    
     
     
 
