@@ -32,6 +32,9 @@ public class AnimationPanel extends JPanel {
 
     private Ship player;
     
+    private boolean pause = true;
+    private int asteroidPause = 0;
+    
     private int mx, my;
    
     /**
@@ -60,7 +63,7 @@ public class AnimationPanel extends JPanel {
         shapes[findEmptyCell()] = shape;
         nShapes++;
         // uncomment to see usage of array memory
-         System.out.println(findEmptyCell()); 
+        System.out.println(findEmptyCell()); 
     }
     
     public void registerPlayer(Ship player) {
@@ -143,16 +146,75 @@ public class AnimationPanel extends JPanel {
         animationTimer = new Timer();
         animationTimer.scheduleAtFixedRate(new AnimationTask(), 0, 25);
     }
-
     /**
      * Task zur Steuerung der Animation.
      */
     private class AnimationTask extends TimerTask {
+        
+        public int rdx(){
+            int r = (int) (50 + (Math.random() * (450 - 50)));
+            if (r < 250){
+                r = AnimationFrame.frameWidth + r;
+            } else {
+                r = r - 500;
+            }
+            return r;
+        }
+    
+        public int rdy(){
+            int r = (int) (50 + (Math.random() * (450 - 50)));
+            if (r < 250){
+                r = AnimationFrame.frameHeight + r;
+            } else {
+                r = r - 500;
+            }
+            return r;
+        }
+        
+        public int rdPos(int min, int max){
+            return (int) (min + (Math.random() * (max - min)));
+        }
+        
+        // asteroid velocity
+        public double[] calcAV(double v, int rdx, int rdy){
+            double dis;
+            double[] vec = new double[2];
+            // vector asteroid - pos in field 
+            vec[0] = rdPos(0, AnimationFrame.frameWidth)- rdx;
+            vec[1] = rdPos(0, AnimationFrame.frameHeight) - rdy;
+            
+            // distance asteroid - pos in field (Betrag Vektor)
+            dis = Math.sqrt(Math.pow(vec[0], 2) + Math.pow(vec[1], 2));
+            vec[0] = (vec[0] / dis) * v;
+            vec[1] = (vec[1] / dis) * v;
+            return vec;
+        }
+        
         @Override
         public void run() {
-            if(player.shoot()){
-                register(player.getShotA());
+            
+            // shoot every second tick
+            if(pause){
+                if(player.shoot()){
+                    register(player.getShotA());
+                }
+                pause = false;
+            } else {
+                pause = true;
             }
+            
+            // spawn asteroid
+            if(asteroidPause == 10){
+                int rdx = rdx();
+                int rdy = rdy();
+                double[] aV = calcAV(5, rdx, rdy);
+                Asteroid a = new Asteroid(rdx, rdy, (int)aV[0], (int)aV[1]);
+                register(a);
+                asteroidPause = 0;
+            } else {
+                asteroidPause++;
+            }
+            
             
             // bewege die Bälle
             moveAll();
@@ -235,7 +297,7 @@ public class AnimationPanel extends JPanel {
             player.setMouseX(mx);
             player.setMouseY(my);
             
-            // System.out.println("MouseLocation: " + mx + ", " + my);
+//            System.out.println("MouseLocation: " + mx + ", " + my);
             
             me.consume();
         }

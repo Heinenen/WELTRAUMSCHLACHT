@@ -12,8 +12,10 @@ import javax.imageio.ImageIO;
  */
 public class Asteroid extends Enemy {
     
-    public Asteroid(int x, int y, int vmax){
-        super(x, y, vmax);
+    public Asteroid(int x, int y, int vx, int vy){
+        super(x, y);
+        this.vx = vx;
+        this.vy = vy;
         
         try {
             image = (BufferedImage) ImageIO.read(new File("img/Asteroid.png"));

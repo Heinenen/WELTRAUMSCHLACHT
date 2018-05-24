@@ -26,6 +26,8 @@ public class Ship extends Shape {
     
     private int vmax;
     
+    private boolean pause = true;
+    
     
     /**
      * Constructor for objects of class Graphic
@@ -136,10 +138,10 @@ public class Ship extends Shape {
         // Bewegung nach unten bzw. diagonal nach unten
         else if(pressedS){
             if(pressedA){
-                if(y + image.getHeight() / 2 >= AnimationFrame.frameHeight && x - image.getWidth() / 2 <= 0){
+                if(y + image.getHeight() / 2 >= AnimationFrame.frameHeight - 30 && x - image.getWidth() / 2 <= 0){
                 vx = 0;
                 vy = 0;
-                } else if(y + image.getHeight() / 2 >= AnimationFrame.frameHeight){
+                } else if(y + image.getHeight() / 2 >= AnimationFrame.frameHeight - 30){
                     vx = -vDiag;
                     vy = 0;
                 } else if(x - image.getWidth() / 2 <= 0){
@@ -150,10 +152,10 @@ public class Ship extends Shape {
                 }
                 
             } else if(pressedD){
-                if(y + image.getHeight() / 2 >= AnimationFrame.frameHeight && x + image.getWidth() / 2 >= AnimationFrame.frameWidth){
+                if(y + image.getHeight() / 2 >= AnimationFrame.frameHeight - 30 && x + image.getWidth() / 2 >= AnimationFrame.frameWidth){
                     vx = 0;
                     vy = 0;
-                } else if(y + image.getHeight() / 2 >= AnimationFrame.frameHeight){
+                } else if(y + image.getHeight() / 2 >= AnimationFrame.frameHeight - 30){
                     vx = vDiag;
                     vy = 0;
                 } else if(x + image.getWidth() / 2 >= AnimationFrame.frameWidth){
@@ -163,7 +165,7 @@ public class Ship extends Shape {
                     moveShipDR();
                 }
             } else {
-                if(y + image.getHeight() / 2 >= AnimationFrame.frameHeight){
+                if(y + image.getHeight() / 2 >= AnimationFrame.frameHeight - 30){
                     vy = 0;
                 } else {
                     moveShipD();
@@ -253,11 +255,20 @@ public class Ship extends Shape {
     
     public boolean shoot(){
         if(mousePressed){
-            shotA = new ShotA(x, y);
-            shotA.setMouseX(mouseX);
-            shotA.setMouseY(mouseY);
-            shotA.velocity();
-            return true;
+            
+            // if(pause){
+                shotA = new ShotA(x, y);
+                shotA.setMouseX(mouseX);
+                shotA.setMouseY(mouseY);
+                shotA.velocity(); 
+                pause = false;
+                return true;
+                
+//            } else {
+//                pause = true;
+//                return false;
+//            }
+            
         } else {
             return false;
         }

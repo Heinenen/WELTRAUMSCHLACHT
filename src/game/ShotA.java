@@ -33,7 +33,7 @@ public class ShotA extends Shape {
     public ShotA(int x, int y) {
         super(x, y);
         this.radius = 5;
-        this.v = 20;
+        this.v = 15;
     }
     
     public void velocity(){

@@ -6,11 +6,9 @@ package game;
  */
 public abstract class Enemy extends Shape {
     
-    private final int vmax;
     
-    public Enemy(int x, int y, int vmax){
+    public Enemy(int x, int y){
         super(x, y);
-        this.vmax = vmax;
     }
     
     
