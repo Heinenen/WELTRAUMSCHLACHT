@@ -83,6 +83,14 @@ public class Ship extends Shape {
     public void setMousePressed(boolean mousePressed) {
         this.mousePressed = mousePressed;
     }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
     
     public ShotA getShotA(){
         return shotA;

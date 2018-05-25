@@ -55,9 +55,6 @@ public class ShotA extends Shape {
     
     public void move(){
         super.move();
-        if(x > AnimationFrame.frameWidth|| y > AnimationFrame.frameHeight || x < 0 || y < 0){
-            outOfPosition = true;
-        }
     }
     
     /**

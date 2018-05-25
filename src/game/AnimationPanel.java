@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Toolkit;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JPanel;
@@ -13,6 +14,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Leinwand zur Darstellung der Animationsobjekte und zur Steuerung der
@@ -39,6 +48,10 @@ public class AnimationPanel extends JPanel {
     private int asteroidPause = 0;
     
     private int mx, my;
+    
+    private boolean spacebarPressed = false;
+    private int highscore;
+    //private
    
     /**
      * Timer-Objekt zum Neuzeichnen des Frames
@@ -134,7 +147,7 @@ public class AnimationPanel extends JPanel {
      * Zeichnet alle registrierten Bälle
      * @param g2d aktueller Grafikkontext
      */
-    private void paintAll(Graphics2D g2d) {
+    private void paintAll(Graphics2D g2d) throws IOException {
         for (int i = 0; i < nShapes; i++) {
             if (shapes[i] == null){
                 continue;
@@ -142,15 +155,49 @@ public class AnimationPanel extends JPanel {
             shapes[i].paint(g2d);
         }
         
+        try{
+                BufferedReader in = new BufferedReader(new FileReader("highscore.txt"));
+                highscore = Integer.parseInt(in.readLine());
+            } catch(FileNotFoundException ex){
+                 System.out.println("File not found!");
+            }
+        
         g2d.setColor(Color.white);
         g2d.drawString("Score: " + score, 0, 20);
+        g2d.drawString("Highscore: " + highscore, 150, 20);
         
         if(Asteroid.gameOver){
             g2d.setColor(Color.red);
-            g2d.setFont(new Font("TimesRoman", Font.PLAIN, 150));
-            g2d.drawString("GAME OVER", 250, 400);
+            g2d.setFont(new Font("TimesRoman", Font.PLAIN, 75));
+            g2d.getFontMetrics().stringWidth("GAME OVER");
+            g2d.drawString("GAME OVER", 450, 400);
+            g2d.setFont(new Font("TimesRoman", Font.PLAIN, 30));
+            g2d.drawString("Press space to play again!", 500, 450);
+            
+            if(score > highscore){
+                highscore = score;
+                try {
+                    PrintWriter writer;
+                    writer = new PrintWriter("highscore.txt", "UTF-8");
+                    writer.println(highscore);
+                    writer.close();
+                } catch (FileNotFoundException | UnsupportedEncodingException ex) {
+                    Logger.getLogger(AnimationPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            PrintWriter writer;
+            if(spacebarPressed){
+                //Restart Game
+                for(int i = 1; i < shapes.length; i++){
+                    shapes[i] = null;
+                }
+                player.setX(Simulation.shipStartX);
+                player.setY(Simulation.shipStartY);
+                Asteroid.gameOver = false;
+                score = 0;
+            }
         }
-                            
+        Toolkit.getDefaultToolkit().sync();
     }
 
     /**
@@ -175,7 +222,11 @@ public class AnimationPanel extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         fillPanelBackground(g2d);
         
-        paintAll(g2d);
+        try {
+            paintAll(g2d);
+        } catch (IOException ex) {
+            Logger.getLogger(AnimationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -246,7 +297,7 @@ public class AnimationPanel extends JPanel {
                 shotPause++;
                 
                 // spawn asteroid
-                if(asteroidPause == 5){
+                if(asteroidPause == 3){
                     int rdx = rdx();
                     int rdy = rdy();
                     // calc asteroid (more or less) random direction with set speed (standard 5)
@@ -259,8 +310,8 @@ public class AnimationPanel extends JPanel {
                 }
                 
                 moveAll();
-                repaint();
             }
+            repaint();
         }
     }
     
@@ -289,6 +340,10 @@ public class AnimationPanel extends JPanel {
                 player.setPressedD(true);
             }
             
+            if(e.getKeyCode() == 32) {
+                spacebarPressed = true;
+            }
+            
             e.consume();
         }
         
@@ -307,6 +362,10 @@ public class AnimationPanel extends JPanel {
             } else if (e.getKeyCode() == 68) {
 //                System.out.println("Key released: " + e.getKeyCode() + "(S)");
                 player.setPressedD(false);
+            }
+            
+            if(e.getKeyCode() == 32) {
+                spacebarPressed = false;
             }
             
             e.consume();

@@ -33,9 +33,6 @@ public class Asteroid extends Enemy {
     @Override
     public void move(){
         super.move();
-        if(AnimationFrame.frameWidth * 2 < Math.abs(x) || AnimationFrame.frameHeight * 2 < Math.abs(y)){
-            outOfPosition = true;
-        }
         // hit-check asteroid-ship
         if((x < Ship.shipX + 45 && x > Ship.shipX - 45) && (y < Ship.shipY + 45 && y > Ship.shipY - 45)){
             gameOver = true;
