@@ -165,6 +165,8 @@ public class AnimationPanel extends JPanel {
         g2d.setColor(Color.white);
         g2d.drawString("Score: " + score, 0, 20);
         g2d.drawString("Highscore: " + highscore, 150, 20);
+        g2d.drawString("Developer-Highscore: 40000",300,20);
+        
         
         if(Asteroid.gameOver){
             g2d.setColor(Color.red);
