@@ -48,6 +48,7 @@ public class AnimationPanel extends JPanel {
     private int asteroidPause = 0;
     private int powerUpPause = 0;
     private int powerUpTimer = 0;
+    private int sp;
     
     private int mx, my;
     
@@ -302,27 +303,23 @@ public class AnimationPanel extends JPanel {
         public void run() {
             if(!Asteroid.gameOver){
                 if(PowerUp.poweredUp){
-                        if(shotPause == 5){
-                            if(player.shoot()){
-                                register(player.getShotA());
-                            }
-                            shotPause = 0;
-                        } 
-                    shotPause++;
-                    powerUpTimer++;
-                    if(powerUpTimer >= 200){
-                        PowerUp.poweredUp = false;
-                        powerUpTimer = 0;
-                    }
+                    sp = 5;
                 } else {
-                if(shotPause == 10){
+                    sp = 10;
+                }
+                if(shotPause == sp){
                     if(player.shoot()){
-                        register(player.getShotA());
+                         register(player.getShotA());
                     }
                     shotPause = 0;
-                }
+                } 
                 shotPause++;
+                powerUpTimer++;
+                if(powerUpTimer >= 200){
+                    PowerUp.poweredUp = false;
+                    powerUpTimer = 0;
                 }
+
                 // spawn asteroid
                 if(asteroidPause == 3){
                     int rdx = rdx();
