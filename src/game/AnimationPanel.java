@@ -46,6 +46,8 @@ public class AnimationPanel extends JPanel {
     
     private int shotPause = 0;
     private int asteroidPause = 0;
+    private int powerUpPause = 0;
+    private int powerUpTimer = 0;
     
     private int mx, my;
     
@@ -83,7 +85,7 @@ public class AnimationPanel extends JPanel {
         shapes[findEmptyCell()] = shape;
         nShapes++;
         // uncomment to see usage of array memory
-        System.out.println(findEmptyCell()); 
+        // System.out.println(findEmptyCell()); 
     }
     
     public void registerPlayer(Ship player) {
@@ -94,21 +96,31 @@ public class AnimationPanel extends JPanel {
     public void checkCollision(){
         
         for(int i = 0; i < shapes.length; i++){
-            if(shapes[i] != null){
-                if("ShotA".equals(shapes[i].getName())){
-                    for(int j = 0; j < shapes.length; j++){
-                        if(shapes[j] != null){
-                            if("Asteroid".equals(shapes[j].getName())){
-                                if(shapes[i] != null && shapes[j] != null){
-                                    if(shapes[i].isColliding(shapes[j])){
-                                        shapes[i] = null;
-                                        shapes[j] = null;
-                                        if(!Asteroid.gameOver){
-                                            score = score + 100;
+                if(shapes[i] != null){
+                    if("ShotA".equals(shapes[i].getName())){
+                        for(int j = 0; j < shapes.length; j++){
+                            if(shapes[j] != null){
+                                if("Asteroid".equals(shapes[j].getName())){
+                                    if(shapes[i] != null && shapes[j] != null){
+                                        if(shapes[i].isColliding(shapes[j])){
+                                            shapes[i] = null;
+                                            shapes[j] = null;
+                                            if(!Asteroid.gameOver){
+                                                score = score + 100;
+                                            }
                                         }
                                     }
                                 }
                             }
+                        }
+                    }
+                }
+                if(shapes[i] != null){
+                if("PowerUp".equals(shapes[i].getName())){
+                    if(shapes[i] != null && player != null){
+                        if(shapes[i].isColliding(player)){
+                            PowerUp.poweredUp = true;
+                            shapes[i] = null;
                         }
                     }
                 }
@@ -196,6 +208,7 @@ public class AnimationPanel extends JPanel {
                 player.setX(Simulation.shipStartX);
                 player.setY(Simulation.shipStartY);
                 Asteroid.gameOver = false;
+                PowerUp.poweredUp = false;
                 score = 0;
             }
         }
@@ -287,9 +300,20 @@ public class AnimationPanel extends JPanel {
         
         @Override
         public void run() {
-            
             if(!Asteroid.gameOver){
-                // shoot every second tick
+                if(PowerUp.poweredUp){
+                        if(shotPause == 5){
+                            if(player.shoot()){
+                                register(player.getShotA());
+                            }
+                            shotPause = 0;
+                        } 
+                    shotPause++;
+                    powerUpTimer++;
+                    if(powerUpTimer >= 200){
+                        PowerUp.poweredUp = false;
+                    }
+                } else {
                 if(shotPause == 10){
                     if(player.shoot()){
                         register(player.getShotA());
@@ -297,7 +321,7 @@ public class AnimationPanel extends JPanel {
                     shotPause = 0;
                 }
                 shotPause++;
-                
+                }
                 // spawn asteroid
                 if(asteroidPause == 3){
                     int rdx = rdx();
@@ -309,6 +333,17 @@ public class AnimationPanel extends JPanel {
                     asteroidPause = 0;
                 } else {
                     asteroidPause++;
+                }
+                
+                if(powerUpPause == 200){
+                    int rdx = rdx();
+                    int rdy = rdy();
+                    double[] pV = calcAV(5, rdx, rdy);
+                    PowerUp p = new PowerUp(rdx, rdy, (int)pV[0], (int)pV[1]);
+                    register(p);
+                    powerUpPause = 0;
+                } else {
+                    powerUpPause++;
                 }
                 
                 moveAll();
