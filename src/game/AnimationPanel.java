@@ -303,19 +303,19 @@ public class AnimationPanel extends JPanel {
         public void run() {
             if(!Asteroid.gameOver){
                 if(PowerUp.poweredUp){
-                    sp = 5;
+                    sp = 3;
                 } else {
                     sp = 10;
                 }
-                if(shotPause == sp){
+                if(shotPause >= sp){
                     if(player.shoot()){
-                         register(player.getShotA());
+                        register(player.getShotA());
                     }
                     shotPause = 0;
                 } 
                 shotPause++;
                 powerUpTimer++;
-                if(powerUpTimer >= 200){
+                if(powerUpTimer == 200){
                     PowerUp.poweredUp = false;
                     powerUpTimer = 0;
                 }
