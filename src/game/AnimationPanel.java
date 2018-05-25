@@ -312,6 +312,7 @@ public class AnimationPanel extends JPanel {
                     powerUpTimer++;
                     if(powerUpTimer >= 200){
                         PowerUp.poweredUp = false;
+                        powerUpTimer = 0;
                     }
                 } else {
                 if(shotPause == 10){
