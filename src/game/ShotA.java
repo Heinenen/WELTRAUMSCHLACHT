@@ -53,10 +53,6 @@ public class ShotA extends Shape {
         return "ShotA";
     }
     
-    public void move(){
-        super.move();
-    }
-    
     /**
      * Der ShotA zeichnet sich selbst auf der Leinwand.
      *

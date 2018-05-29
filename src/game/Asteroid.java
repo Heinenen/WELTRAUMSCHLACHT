@@ -1,7 +1,5 @@
 package game;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -34,11 +32,11 @@ public class Asteroid extends Enemy {
     public void move(){
         super.move();
         // hit-check asteroid-ship
-        if((x < Ship.shipX + 45 && x > Ship.shipX - 45) && (y < Ship.shipY + 45 && y > Ship.shipY - 45)){
+        int dis = (int) Math.sqrt((Ship.shipX - x)*(Ship.shipX - x) + (Ship.shipY - y)*(Ship.shipY - y));  
+        if(dis <= 45){
             gameOver = true;
         }
     }
-    
     
     @Override
     public String getName(){
